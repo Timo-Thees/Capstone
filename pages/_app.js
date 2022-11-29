@@ -1,10 +1,18 @@
 import GlobalStyles from "../styles/GlobalStyles";
+import Editor from "./editor";
 
-function MyApp({Component, pageProps}) {
+function saveText(title = "Unnamed Document", text) {
+  localStorage.setItem(`${title}`, `${text}`);
+}
+function loadText(title) {
+  localStorage.getItem(`${title}`);
+}
+
+function MyApp() {
   return (
     <>
       <GlobalStyles />
-      <Component {...pageProps} />
+      <Editor saveText={saveText} loadText={loadText} />
     </>
   );
 }
