@@ -1,4 +1,4 @@
-import Editor from "../components/Editor.js";
+import Editor from "/Users/timothees/Desktop/Capstone/Capstone/components/Editor";
 
 function saveText(title = "Unnamed Document", text) {
   localStorage.setItem(`${title}`, `${text}`);
