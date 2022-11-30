@@ -1,4 +1,4 @@
-export default function Editor({saveText}, {loadText}) {
+export default function Editor({saveText}) {
   //   function onSave(values) {
   //     const title = values.title;
   //     const text = values.text;
@@ -11,9 +11,9 @@ export default function Editor({saveText}, {loadText}) {
     const text = event.target.text.value;
     saveText(title, text);
   };
-  const handleLoad = () => {
-    loadText("Beispiel");
-  };
+  // const handleLoad = () => {
+  //   loadText("Beispiel");
+  //};
   return (
     <div>
       <h1>Write now!</h1>
@@ -27,7 +27,7 @@ export default function Editor({saveText}, {loadText}) {
           placeholder="It was a dark and stormy night..."
         ></textarea>
         <button type="submit">Save</button>
-        <button onClick={handleLoad}>Load</button>
+        <button>Load</button>
       </form>
     </div>
   );
