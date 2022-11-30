@@ -1,6 +1,6 @@
 import GlobalStyles from "../styles/GlobalStyles";
 
-function MyApp({Component, pageProps}) {
+export default function MyApp({Component, pageProps}) {
   return (
     <>
       <GlobalStyles />
@@ -8,5 +8,3 @@ function MyApp({Component, pageProps}) {
     </>
   );
 }
-
-export default MyApp;
