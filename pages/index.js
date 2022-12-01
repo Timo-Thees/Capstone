@@ -1,4 +1,5 @@
 import Editor from "../components/Editor";
+import Navigation from "../components/Navigation";
 
 function saveText(title = "Unnamed Document", text) {
   localStorage.setItem(`${title}`, `${text}`);
@@ -6,6 +7,7 @@ function saveText(title = "Unnamed Document", text) {
 export default function Home() {
   return (
     <div>
+      <Navigation />
       <Editor saveText={saveText} />
     </div>
   );
