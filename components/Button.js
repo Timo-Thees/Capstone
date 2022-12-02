@@ -7,9 +7,6 @@ export const Button = styled.button`
   border-radius: 20px;
   border: none;
   color: white;
-  & :active {
-    background: #326273;
-  }
 `;
 export const ActiveButton = styled.button`
   width: 80px;
