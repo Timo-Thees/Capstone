@@ -1,3 +1,5 @@
+import styled from "styled-components";
+
 export default function Editor({saveText, page}) {
   const handleSave = event => {
     event.preventDefault();
@@ -8,7 +10,7 @@ export default function Editor({saveText, page}) {
   if (page === "editor") {
     return (
       <div>
-        <form onSubmit={handleSave}>
+        <Form onSubmit={handleSave}>
           <label htmlFor="title">Title</label>
           <input type="text" name="title" id="title"></input>
           <textarea
@@ -18,10 +20,18 @@ export default function Editor({saveText, page}) {
           ></textarea>
           <button type="submit">Save</button>
           <button>Load</button>
-        </form>
+        </Form>
       </div>
     );
   } else {
     return;
   }
 }
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  padding: 50px;
+  gap: 50px;
+`;
