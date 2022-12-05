@@ -10,17 +10,22 @@ export default function SetGoals({page}) {
   }
   function handleDeleteTimeslot(keyForDeletion) {
     event.preventDefault();
-    console.log(writingTime.find(keyForDeletion));
+    const deleteEntry = writingTime.findIndex(object => {
+      return object.key === keyForDeletion;
+    });
+    writingTime.splice(deleteEntry, 1);
+    return;
   }
+  // const [goals, setGoals] = useState({dailyGoal: 0, writingTimes: {}});
   if (page === "goals") {
     return (
       <>
         <label>How many words do you want to write each day?</label>
-        <input type="text"></input>
+        <input type="number"></input>
         <ul>
           <li>
             {" "}
-            Monday <input type="radio"></input>
+            Monday
             {writingTime.map(timeslot => {
               if (timeslot.weekday === "Mon") {
                 return (
@@ -33,7 +38,102 @@ export default function SetGoals({page}) {
               }
             })}
             <button onClick={() => handleNewTimeslot("Mon")}>+</button>
-            <button onClick={() => console.log(writingTime)}>show</button>
+          </li>
+          <li>
+            {" "}
+            Tuesday
+            {writingTime.map(timeslot => {
+              if (timeslot.weekday === "Tue") {
+                return (
+                  <Timeslot
+                    key={timeslot.key}
+                    handleDeleteTimeslot={handleDeleteTimeslot}
+                    keyForDeletion={timeslot.key}
+                  />
+                );
+              }
+            })}
+            <button onClick={() => handleNewTimeslot("Tue")}>+</button>
+          </li>
+          <li>
+            {" "}
+            Wednesday
+            {writingTime.map(timeslot => {
+              if (timeslot.weekday === "Wen") {
+                return (
+                  <Timeslot
+                    key={timeslot.key}
+                    handleDeleteTimeslot={handleDeleteTimeslot}
+                    keyForDeletion={timeslot.key}
+                  />
+                );
+              }
+            })}
+            <button onClick={() => handleNewTimeslot("Wen")}>+</button>
+          </li>
+          <li>
+            {" "}
+            Thursday
+            {writingTime.map(timeslot => {
+              if (timeslot.weekday === "Thu") {
+                return (
+                  <Timeslot
+                    key={timeslot.key}
+                    handleDeleteTimeslot={handleDeleteTimeslot}
+                    keyForDeletion={timeslot.key}
+                  />
+                );
+              }
+            })}
+            <button onClick={() => handleNewTimeslot("Thu")}>+</button>
+          </li>
+          <li>
+            {" "}
+            Friday
+            {writingTime.map(timeslot => {
+              if (timeslot.weekday === "Fri") {
+                return (
+                  <Timeslot
+                    key={timeslot.key}
+                    handleDeleteTimeslot={handleDeleteTimeslot}
+                    keyForDeletion={timeslot.key}
+                  />
+                );
+              }
+            })}
+            <button onClick={() => handleNewTimeslot("Fri")}>+</button>
+          </li>
+          <li>
+            {" "}
+            Saturday
+            {writingTime.map(timeslot => {
+              if (timeslot.weekday === "Sat") {
+                return (
+                  <Timeslot
+                    key={timeslot.key}
+                    handleDeleteTimeslot={handleDeleteTimeslot}
+                    keyForDeletion={timeslot.key}
+                  />
+                );
+              }
+            })}
+            <button onClick={() => handleNewTimeslot("Sat")}>+</button>
+          </li>
+          <li>
+            {" "}
+            Sunday
+            {writingTime.map(timeslot => {
+              if (timeslot.weekday === "Sun") {
+                return (
+                  <Timeslot
+                    key={timeslot.key}
+                    handleDeleteTimeslot={handleDeleteTimeslot}
+                    keyForDeletion={timeslot.key}
+                  />
+                );
+              }
+            })}
+            <button onClick={() => handleNewTimeslot("Sun")}>+</button>
           </li>
         </ul>
       </>
