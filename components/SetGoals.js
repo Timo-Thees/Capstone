@@ -1,15 +1,7 @@
 import {useState} from "react";
 
 export default function SetGoals({page}) {
-  const [writingTime, setWritingTime] = useState({
-    Mon: 0,
-    Tue: 0,
-    Wen: 0,
-    Thu: 0,
-    Fri: 0,
-    Sat: 0,
-    Sun: 0,
-  });
+  const [writingTime, setWritingTime] = useState([]);
 
   if (page === "goals") {
     return (
@@ -20,15 +12,15 @@ export default function SetGoals({page}) {
           <li>
             {" "}
             Monday <input type="radio"></input>
-            <p>{writingTime.Mon}</p>
-            <button
-              onClick={() =>
-                setWritingTime({...writingTime, Mon: writingTime.Mon + 1})
+            {writingTime.map(day => {
+              if (day === "Mon") {
+                return <button key={day.index}>that was easy!</button>;
               }
-            >
+            })}
+            <button onClick={() => setWritingTime([...writingTime, "Mon"])}>
               +
             </button>
-            <button onClick={() => console.log(writingTime.Mon)}>show</button>
+            <button onClick={() => console.log(writingTime)}>show</button>
           </li>
         </ul>
       </>
