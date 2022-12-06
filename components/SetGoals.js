@@ -13,7 +13,7 @@ export default function SetGoals({page}) {
     const deleteEntry = writingTime.findIndex(object => {
       return object.key === keyForDeletion;
     });
-    writingTime.splice(deleteEntry, 1);
+    setWritingTime(writingTime.splice(deleteEntry, 1));
     return writingTime;
   }
   /* const [goals, setGoals] = useState({dailyGoal: 0, writingTimes: {}});*/
