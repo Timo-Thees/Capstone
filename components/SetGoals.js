@@ -16,7 +16,7 @@ export default function SetGoals({page}) {
     writingTime.splice(deleteEntry, 1);
     return writingTime;
   }
-  // const [goals, setGoals] = useState({dailyGoal: 0, writingTimes: {}});
+  /* const [goals, setGoals] = useState({dailyGoal: 0, writingTimes: {}});*/
   if (page === "goals") {
     return (
       <>
