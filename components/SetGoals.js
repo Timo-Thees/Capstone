@@ -14,7 +14,7 @@ export default function SetGoals({page}) {
       return object.key === keyForDeletion;
     });
     writingTime.splice(deleteEntry, 1);
-    return;
+    return writingTime;
   }
   // const [goals, setGoals] = useState({dailyGoal: 0, writingTimes: {}});
   if (page === "goals") {
@@ -23,118 +23,25 @@ export default function SetGoals({page}) {
         <label>How many words do you want to write each day?</label>
         <input type="number"></input>
         <ul>
-          <li>
-            {" "}
-            Monday
-            {writingTime.map(timeslot => {
-              if (timeslot.weekday === "Mon") {
-                return (
-                  <Timeslot
-                    key={timeslot.key}
-                    handleDeleteTimeslot={handleDeleteTimeslot}
-                    keyForDeletion={timeslot.key}
-                  />
-                );
-              }
-            })}
-            <button onClick={() => handleNewTimeslot("Mon")}>+</button>
-          </li>
-          <li>
-            {" "}
-            Tuesday
-            {writingTime.map(timeslot => {
-              if (timeslot.weekday === "Tue") {
-                return (
-                  <Timeslot
-                    key={timeslot.key}
-                    handleDeleteTimeslot={handleDeleteTimeslot}
-                    keyForDeletion={timeslot.key}
-                  />
-                );
-              }
-            })}
-            <button onClick={() => handleNewTimeslot("Tue")}>+</button>
-          </li>
-          <li>
-            {" "}
-            Wednesday
-            {writingTime.map(timeslot => {
-              if (timeslot.weekday === "Wen") {
-                return (
-                  <Timeslot
-                    key={timeslot.key}
-                    handleDeleteTimeslot={handleDeleteTimeslot}
-                    keyForDeletion={timeslot.key}
-                  />
-                );
-              }
-            })}
-            <button onClick={() => handleNewTimeslot("Wen")}>+</button>
-          </li>
-          <li>
-            {" "}
-            Thursday
-            {writingTime.map(timeslot => {
-              if (timeslot.weekday === "Thu") {
-                return (
-                  <Timeslot
-                    key={timeslot.key}
-                    handleDeleteTimeslot={handleDeleteTimeslot}
-                    keyForDeletion={timeslot.key}
-                  />
-                );
-              }
-            })}
-            <button onClick={() => handleNewTimeslot("Thu")}>+</button>
-          </li>
-          <li>
-            {" "}
-            Friday
-            {writingTime.map(timeslot => {
-              if (timeslot.weekday === "Fri") {
-                return (
-                  <Timeslot
-                    key={timeslot.key}
-                    handleDeleteTimeslot={handleDeleteTimeslot}
-                    keyForDeletion={timeslot.key}
-                  />
-                );
-              }
-            })}
-            <button onClick={() => handleNewTimeslot("Fri")}>+</button>
-          </li>
-          <li>
-            {" "}
-            Saturday
-            {writingTime.map(timeslot => {
-              if (timeslot.weekday === "Sat") {
-                return (
-                  <Timeslot
-                    key={timeslot.key}
-                    handleDeleteTimeslot={handleDeleteTimeslot}
-                    keyForDeletion={timeslot.key}
-                  />
-                );
-              }
-            })}
-            <button onClick={() => handleNewTimeslot("Sat")}>+</button>
-          </li>
-          <li>
-            {" "}
-            Sunday
-            {writingTime.map(timeslot => {
-              if (timeslot.weekday === "Sun") {
-                return (
-                  <Timeslot
-                    key={timeslot.key}
-                    handleDeleteTimeslot={handleDeleteTimeslot}
-                    keyForDeletion={timeslot.key}
-                  />
-                );
-              }
-            })}
-            <button onClick={() => handleNewTimeslot("Sun")}>+</button>
-          </li>
+          {weekday.map(day => {
+            return (
+              <li key={weekday.index}>
+                {day}
+                {writingTime.map(timeslot => {
+                  if (timeslot.weekday === day) {
+                    return (
+                      <Timeslot
+                        key={timeslot.key}
+                        handleDeleteTimeslot={handleDeleteTimeslot}
+                        keyForDeletion={timeslot.key}
+                      />
+                    );
+                  }
+                })}{" "}
+                <button onClick={() => handleNewTimeslot(day)}>+</button>
+              </li>
+            );
+          })}
         </ul>
       </>
     );
@@ -142,3 +49,12 @@ export default function SetGoals({page}) {
     return;
   }
 }
+const weekday = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
