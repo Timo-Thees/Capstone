@@ -22,7 +22,6 @@ export default function SetGoals({page}) {
     event.preventDefault();
     setWritingTime(writingTime.filter(time => time.key !== keyForDeletion));
   }
-  /* const [goals, setGoals] = useState({dailyGoal: 0, writingTimes: {}});*/
   if (page === "goals") {
     return (
       <>
@@ -43,7 +42,7 @@ export default function SetGoals({page}) {
                       />
                     );
                   }
-                })}{" "}
+                })}
                 <button onClick={() => handleNewTimeslot(day)}>+</button>
               </li>
             );
