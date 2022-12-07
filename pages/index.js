@@ -2,24 +2,31 @@ import Editor from "../components/Editor";
 import Navigation from "../components/Navigation";
 import SetGoals from "../components/SetGoals";
 import Progress from "../components/Progress";
+import Projects from "../components/Projects";
 import {useState} from "react";
 import styled from "styled-components";
 
 function saveText(title = "Unnamed Document", text) {
-  localStorage.setItem(`${title}`, `${text}`);
+  const saveItem = {title: title, text: text};
+  localStorage.setItem("writeNow save files", JSON.stringify(saveItem));
 }
 
 export default function Home() {
-  const [page, setPage] = useState("goals");
+  const [page, setPage] = useState("editor");
   function handleChangePage(destination) {
     setPage(destination);
+  }
+  const [myProjects, setMyProjects] = useState([]);
+  function saveProjects(title, text) {
+    setMyProjects(...myProjects, {title: title, text: text});
   }
   return (
     <Body>
       <Navigation handleChangePage={handleChangePage} page={page} />
-      <SetGoals page={page} />
-      <Progress page={page} />
-      <Editor saveText={saveText} page={page} />
+      {page === "goals" ? <SetGoals /> : <></>}
+      {page === "progress" ? <Progress /> : <></>}
+      {page === "my projects" ? <Projects myProjects={myProjects} /> : <></>}
+      {page === "editor" ? <Editor saveText={saveText} page={page} /> : <></>}
     </Body>
   );
 }
