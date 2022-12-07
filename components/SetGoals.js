@@ -22,33 +22,35 @@ export default function SetGoals() {
     event.preventDefault();
     setWritingTime(writingTime.filter(time => time.key !== keyForDeletion));
   }
-  /* const [goals, setGoals] = useState({dailyGoal: 0, writingTimes: {}});*/
-
-  return (
-    <>
-      <label>How many words do you want to write each day?</label>
-      <input type="number"></input>
-      <ul>
-        {weekday.map(day => {
-          return (
-            <li key={weekday.index}>
-              {day}
-              {writingTime.map(timeslot => {
-                if (timeslot.weekday === day) {
-                  return (
-                    <Timeslot
-                      key={timeslot.key}
-                      handleDeleteTimeslot={handleDeleteTimeslot}
-                      keyForDeletion={timeslot.key}
-                    />
-                  );
-                }
-              })}{" "}
-              <button onClick={() => handleNewTimeslot(day)}>+</button>
-            </li>
-          );
-        })}
-      </ul>
-    </>
-  );
+  if (page === "goals") {
+    return (
+      <>
+        <label>How many words do you want to write each day?</label>
+        <input type="number"></input>
+        <ul>
+          {weekday.map(day => {
+            return (
+              <li key={weekday.index}>
+                {day}
+                {writingTime.map(timeslot => {
+                  if (timeslot.weekday === day) {
+                    return (
+                      <Timeslot
+                        key={timeslot.key}
+                        handleDeleteTimeslot={handleDeleteTimeslot}
+                        keyForDeletion={timeslot.key}
+                      />
+                    );
+                  }
+                })}
+                <button onClick={() => handleNewTimeslot(day)}>+</button>
+              </li>
+            );
+          })}
+        </ul>
+      </>
+    );
+  } else {
+    return;
+  }
 }
