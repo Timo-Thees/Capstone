@@ -10,7 +10,7 @@ function saveText(title = "Unnamed Document", text) {
 }
 
 export default function Home() {
-  const [page, setPage] = useState("editor");
+  const [page, setPage] = useState("goals");
   function handleChangePage(destination) {
     setPage(destination);
   }
