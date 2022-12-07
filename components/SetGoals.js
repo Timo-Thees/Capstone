@@ -1,6 +1,16 @@
 import {useState} from "react";
 import Timeslot from "./Timeslot";
 
+const weekday = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
+
 export default function SetGoals({page}) {
   const [writingTime, setWritingTime] = useState([{weekday: "never", key: 0}]);
   function handleNewTimeslot(Day) {
@@ -10,11 +20,7 @@ export default function SetGoals({page}) {
   }
   function handleDeleteTimeslot(keyForDeletion) {
     event.preventDefault();
-    const deleteEntry = writingTime.findIndex(object => {
-      return object.key === keyForDeletion;
-    });
-    setWritingTime(writingTime.splice(deleteEntry, 1));
-    return writingTime;
+    setWritingTime(writingTime.filter(time => time.key !== keyForDeletion));
   }
   /* const [goals, setGoals] = useState({dailyGoal: 0, writingTimes: {}});*/
   if (page === "goals") {
@@ -49,12 +55,3 @@ export default function SetGoals({page}) {
     return;
   }
 }
-const weekday = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];
