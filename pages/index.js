@@ -6,10 +6,10 @@ import Projects from "../components/Projects";
 import {useState} from "react";
 import styled from "styled-components";
 
-function saveText(title = "Unnamed Document", text) {
-  const saveItem = {title: title, text: text};
-  localStorage.setItem("writeNow save files", JSON.stringify(saveItem));
-}
+// function saveText(title = "Unnamed Document", text) {
+//   const saveItem = {title: title, text: text};
+//   localStorage.setItem("writeNow save files", JSON.stringify(saveItem));
+// }
 
 export default function Home() {
   const [page, setPage] = useState("editor");
@@ -25,8 +25,19 @@ export default function Home() {
       <Navigation handleChangePage={handleChangePage} page={page} />
       {page === "goals" ? <SetGoals /> : <></>}
       {page === "progress" ? <Progress /> : <></>}
-      {page === "my projects" ? <Projects myProjects={myProjects} /> : <></>}
-      {page === "editor" ? <Editor saveText={saveText} page={page} /> : <></>}
+      {page === "my projects" ? (
+        <Projects myProjects={myProjects} handleChangePage={handleChangePage} />
+      ) : (
+        <></>
+      )}
+      {page === "editor" ? (
+        <Editor
+          saveProjects={saveProjects}
+          handleChangePage={handleChangePage}
+        />
+      ) : (
+        <></>
+      )}
     </Body>
   );
 }

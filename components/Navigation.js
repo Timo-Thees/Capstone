@@ -5,6 +5,7 @@ import {ActiveButton} from "./Button";
 export default function Navigation({handleChangePage, page}) {
   return (
     <Nav>
+      <Button>{page}</Button>
       {page === "goals" ? (
         <ActiveButton onClick={() => handleChangePage("goals")}>
           Set Goals
