@@ -1,18 +1,45 @@
-export default function Projects({myProjects, handleChangePage}) {
+import styled from "styled-components";
+
+export default function Projects({
+  myProjects,
+  handleChangePage,
+  setEditorContent,
+}) {
+  function handleLoadFile(title, text) {
+    setEditorContent({title: title, text: text});
+    handleChangePage("editor");
+  }
   return (
-    <div>
-      <div>
+    <AllFiles>
+      <FileBox>
         <h3>Start something new!</h3>
         <button onClick={() => handleChangePage("editor")}>new document</button>
-      </div>
+      </FileBox>
       {myProjects.map(project => {
         return (
-          <div key={project.title}>
+          <FileBox key={project.title}>
             <h3>{project.title}</h3>
             <article>{project.text}</article>
-          </div>
+            <button onClick={() => handleLoadFile(project.title, project.text)}>
+              continue
+            </button>
+          </FileBox>
         );
       })}
-    </div>
+    </AllFiles>
   );
 }
+
+const AllFiles = styled.div`
+  margin-left: 10vw;
+  margin-right: 10vw;
+  display: grid;
+  background-color: salmon;
+  padding: 2vh 2vw;
+  gap: 2vh;
+`;
+
+const FileBox = styled.div`
+  background-color: lightblue;
+  padding: 2vh 2vw;
+`;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const TitleField = styled.input`
+export const TitleField = styled.textarea`
   border: 2px solid #5c9ead;
   border-radius: 8px;
   padding: 8px;

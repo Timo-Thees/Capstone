@@ -6,27 +6,30 @@ import Projects from "../components/Projects";
 import {useState} from "react";
 import styled from "styled-components";
 
-// function saveText(title = "Unnamed Document", text) {
-//   const saveItem = {title: title, text: text};
-//   localStorage.setItem("writeNow save files", JSON.stringify(saveItem));
-// }
-
 export default function Home() {
-  const [page, setPage] = useState("editor");
+  const [page, setPage] = useState("my projects");
   function handleChangePage(destination) {
     setPage(destination);
   }
   const [myProjects, setMyProjects] = useState([]);
   function saveProjects(title, text) {
-    setMyProjects(...myProjects, {title: title, text: text});
+    if (title === "") {
+      title = "Unnamed Document";
+    }
+    setMyProjects([...myProjects, {title: title, text: text}]);
   }
+  const [editorContent, setEditorContent] = useState({title: "", text: ""});
   return (
     <Body>
       <Navigation handleChangePage={handleChangePage} page={page} />
       {page === "goals" ? <SetGoals /> : <></>}
       {page === "progress" ? <Progress /> : <></>}
       {page === "my projects" ? (
-        <Projects myProjects={myProjects} handleChangePage={handleChangePage} />
+        <Projects
+          myProjects={myProjects}
+          handleChangePage={handleChangePage}
+          setEditorContent={setEditorContent}
+        />
       ) : (
         <></>
       )}
@@ -34,6 +37,7 @@ export default function Home() {
         <Editor
           saveProjects={saveProjects}
           handleChangePage={handleChangePage}
+          editorContent={editorContent}
         />
       ) : (
         <></>

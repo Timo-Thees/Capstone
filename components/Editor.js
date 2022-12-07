@@ -2,7 +2,11 @@ import styled from "styled-components";
 import {TitleField, TextField} from "./Textfields";
 import {Button} from "./Button";
 
-export default function Editor({saveProjects, handleChangePage}) {
+export default function Editor({
+  saveProjects,
+  handleChangePage,
+  editorContent,
+}) {
   const handleSave = event => {
     event.preventDefault();
     const title = event.target.title.value;
@@ -12,17 +16,16 @@ export default function Editor({saveProjects, handleChangePage}) {
   return (
     <div>
       <Form onSubmit={handleSave}>
-        <TitleField
-          type="text"
-          name="title"
-          id="title"
-          placeholder="New Story"
-        ></TitleField>
+        <TitleField type="text" name="title" id="title" placeholder="New Story">
+          {editorContent.title}
+        </TitleField>
         <TextField
           name="text"
           id="text"
           placeholder="It was a dark and stormy night..."
-        ></TextField>
+        >
+          {editorContent.text}
+        </TextField>
         <ButtonContainer>
           <Button type="submit">Save</Button>
           <Button onClick={() => handleChangePage("my projects")}>Load</Button>
