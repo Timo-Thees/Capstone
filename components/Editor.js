@@ -12,6 +12,7 @@ export default function Editor({
     const title = event.target.title.value;
     const text = event.target.text.value;
     const id = editorContent.id;
+    handleChangePage("my projects");
     saveProjects(title, text, id);
   };
   return (
@@ -31,7 +32,7 @@ export default function Editor({
           defaultValue={editorContent.text}
         ></TextField>
         <ButtonContainer>
-          <Button type="submit">Save</Button>
+          <Button type="submit">Save and Quit</Button>
           <Button onClick={() => handleChangePage("my projects")}>Load</Button>
         </ButtonContainer>
       </Form>

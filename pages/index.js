@@ -25,10 +25,10 @@ export default function Home() {
       title = "Unnamed Document";
     }
     const doesTitleExist = myProjects.find(project => project.title === title);
-    if (doesTitleExist !== undefined) {
+    const doesIdExist = myProjects.find(project => project.id === id);
+    if (doesTitleExist !== undefined && doesIdExist === undefined) {
       nameAlreadyTaken(title, text, id);
     }
-    const doesIdExist = myProjects.find(project => project.id === id);
     if (doesIdExist !== undefined) {
       const updatedFile = myProjects.map(project => {
         if (project.id === doesIdExist.id) {

@@ -33,7 +33,6 @@ export default function Projects({
           <FileBox key={project.id}>
             <h3>{project.title}</h3>
             <article>{project.text}</article>
-            <p>{project.id}</p>
             <button
               onClick={() =>
                 handleLoadFile(project.title, project.text, project.id)
