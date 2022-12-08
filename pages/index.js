@@ -12,11 +12,11 @@ export default function Home() {
     setPage(destination);
   }
   const [myProjects, setMyProjects] = useState([]);
-  function saveProjects(title, text) {
+  function saveProjects(title, text, id) {
     if (title === "") {
       title = "Unnamed Document";
     }
-    setMyProjects([...myProjects, {title: title, text: text}]);
+    setMyProjects([...myProjects, {title: title, text: text, id: id}]);
   }
   const [editorContent, setEditorContent] = useState({title: "", text: ""});
   return (
@@ -49,5 +49,5 @@ export default function Home() {
 const Body = styled.div`
   background: #eeeeee;
   width: 100vw;
-  height: 100vh;
+  height: 150vh;
 `;

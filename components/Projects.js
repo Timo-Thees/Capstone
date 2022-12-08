@@ -5,22 +5,38 @@ export default function Projects({
   handleChangePage,
   setEditorContent,
 }) {
-  function handleLoadFile(title, text) {
-    setEditorContent({title: title, text: text});
+  function handleLoadFile(title, text, id) {
+    setEditorContent({title: title, text: text, id: id});
+    handleChangePage("editor");
+  }
+  function handleNewFile() {
+    const lastEntry = myProjects[myProjects.length - 1];
+    const newId = () => {
+      if (lastEntry.id == false) {
+        return 0;
+      } else {
+        return lastEntry.id + 1;
+      }
+    };
+    setEditorContent({title: "", text: "", id: newId});
     handleChangePage("editor");
   }
   return (
     <AllFiles>
       <FileBox>
         <h3>Start something new!</h3>
-        <button onClick={() => handleChangePage("editor")}>new document</button>
+        <button onClick={() => handleNewFile()}>new document</button>
       </FileBox>
       {myProjects.map(project => {
         return (
-          <FileBox key={project.title}>
+          <FileBox key={project.id}>
             <h3>{project.title}</h3>
             <article>{project.text}</article>
-            <button onClick={() => handleLoadFile(project.title, project.text)}>
+            <button
+              onClick={() =>
+                handleLoadFile(project.title, project.text, project.id)
+              }
+            >
               continue
             </button>
           </FileBox>

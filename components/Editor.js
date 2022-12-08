@@ -11,7 +11,8 @@ export default function Editor({
     event.preventDefault();
     const title = event.target.title.value;
     const text = event.target.text.value;
-    saveProjects(title, text);
+    const id = editorContent.id;
+    saveProjects(title, text, id);
   };
   return (
     <div>
