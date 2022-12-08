@@ -19,12 +19,14 @@ export default function Navigation({handleChangePage, page}) {
       ) : (
         <Button onClick={() => handleChangePage("progress")}>Progress</Button>
       )}
-      {page === "editor" ? (
-        <ActiveButton onClick={() => handleChangePage("editor")}>
+      {page === "my projects" || page === "editor" ? (
+        <ActiveButton onClick={() => handleChangePage("my projects")}>
           Projects
         </ActiveButton>
       ) : (
-        <Button onClick={() => handleChangePage("editor")}>Projects</Button>
+        <Button onClick={() => handleChangePage("my projects")}>
+          Projects
+        </Button>
       )}
     </Nav>
   );
