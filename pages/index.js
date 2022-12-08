@@ -16,6 +16,8 @@ export default function Home() {
     if (title === "") {
       title = "Unnamed Document";
     }
+    const doesIdExist = myProjects.find(project => project.id === id);
+    console.log(doesIdExist);
     setMyProjects([...myProjects, {title: title, text: text, id: id}]);
   }
   const [editorContent, setEditorContent] = useState({title: "", text: ""});

@@ -11,13 +11,14 @@ export default function Projects({
   }
   function handleNewFile() {
     const lastEntry = myProjects[myProjects.length - 1];
-    const newId = () => {
-      if (lastEntry.id == false) {
+    function testEntry(entryToTest) {
+      if (entryToTest === undefined) {
         return 0;
       } else {
-        return lastEntry.id + 1;
+        return entryToTest.id + 1;
       }
-    };
+    }
+    const newId = testEntry(lastEntry);
     setEditorContent({title: "", text: "", id: newId});
     handleChangePage("editor");
   }
@@ -32,6 +33,7 @@ export default function Projects({
           <FileBox key={project.id}>
             <h3>{project.title}</h3>
             <article>{project.text}</article>
+            <p>{project.id}</p>
             <button
               onClick={() =>
                 handleLoadFile(project.title, project.text, project.id)

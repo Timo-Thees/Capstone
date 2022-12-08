@@ -17,16 +17,19 @@ export default function Editor({
   return (
     <div>
       <Form onSubmit={handleSave}>
-        <TitleField type="text" name="title" id="title" placeholder="New Story">
-          {editorContent.title}
-        </TitleField>
+        <TitleField
+          type="text"
+          name="title"
+          id="title"
+          placeholder="New Story"
+          defaultValue={editorContent.title}
+        ></TitleField>
         <TextField
           name="text"
           id="text"
           placeholder="It was a dark and stormy night..."
-        >
-          {editorContent.text}
-        </TextField>
+          defaultValue={editorContent.text}
+        ></TextField>
         <ButtonContainer>
           <Button type="submit">Save</Button>
           <Button onClick={() => handleChangePage("my projects")}>Load</Button>
