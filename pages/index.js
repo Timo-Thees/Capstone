@@ -17,8 +17,17 @@ export default function Home() {
       title = "Unnamed Document";
     }
     const doesIdExist = myProjects.find(project => project.id === id);
-    console.log(doesIdExist);
-    setMyProjects([...myProjects, {title: title, text: text, id: id}]);
+    if (doesIdExist !== undefined) {
+      const updatedFile = myProjects.map(project => {
+        if (project.id === doesIdExist.id) {
+          return {...project, title: title, text: text};
+        }
+        return project;
+      });
+      setMyProjects([...updatedFile]);
+    } else {
+      setMyProjects([...myProjects, {title: title, text: text, id: id}]);
+    }
   }
   const [editorContent, setEditorContent] = useState({title: "", text: ""});
   return (
