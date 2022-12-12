@@ -18,6 +18,7 @@ export default function Home() {
     title: "",
     text: "",
     id: 0,
+    taken: false,
   });
 
   function saveProjects(title, text, id) {
@@ -27,7 +28,8 @@ export default function Home() {
     const doesTitleExist = myProjects.find(project => project.title === title);
     const doesIdExist = myProjects.find(project => project.id === id);
     if (doesTitleExist !== undefined && doesIdExist === undefined) {
-      nameAlreadyTaken(title, text, id);
+      setNameTakenContent({title: title, text: text, id: id, taken: true});
+      return;
     }
     if (doesIdExist !== undefined) {
       const updatedFile = myProjects.map(project => {
@@ -41,18 +43,16 @@ export default function Home() {
       setMyProjects([...myProjects, {title: title, text: text, id: id}]);
     }
   }
-  function nameAlreadyTaken(title, text, id) {
-    setPage("name taken");
-    setNameTakenContent({title: title, text: text, id: id});
-  }
+
   return (
     <Body>
       <Navigation handleChangePage={handleChangePage} page={page} />
-      {page === "name taken" ? (
+      {nameTakenContent.taken === true ? (
         <NameTaken
           nameTakenContent={nameTakenContent}
           saveProjects={saveProjects}
           setPage={setPage}
+          setNameTakenContent={setNameTakenContent}
         />
       ) : (
         <></>
