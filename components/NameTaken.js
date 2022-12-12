@@ -12,7 +12,7 @@ export default function NameTaken({nameTakenContent, saveProjects, setPage}) {
   return (
     <div>
       <h1>
-        A file with that name does allready exist. Please choose a different
+        A file with that name does already exist. Please choose a different
         name.
       </h1>
       <form onSubmit={handleSave}>
