@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import {TitleField, TextField} from "./Textfields";
 import {Button} from "./Button";
+import {useState} from "react";
 
 export default function Editor({
   saveProjects,
   handleChangePage,
   editorContent,
 }) {
+  const [wordcount, setWordcount] = useState(editorContent.wordcount);
   const handleSave = event => {
     event.preventDefault();
     const title = event.target.title.value;

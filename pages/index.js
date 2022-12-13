@@ -13,34 +13,48 @@ export default function Home() {
     setPage(destination);
   }
   const [myProjects, setMyProjects] = useState([]);
-  const [editorContent, setEditorContent] = useState({title: "", text: ""});
+  const [editorContent, setEditorContent] = useState({
+    title: "",
+    text: "",
+    wordcount: 0,
+  });
   const [nameTakenContent, setNameTakenContent] = useState({
     title: "",
     text: "",
     id: 0,
     taken: false,
+    wordcount: 0,
   });
 
-  function saveProjects(title, text, id) {
+  function saveProjects(title, text, id, wordcount) {
     if (title === "") {
       title = "Unnamed Document";
     }
     const doesTitleExist = myProjects.find(project => project.title === title);
     const doesIdExist = myProjects.find(project => project.id === id);
     if (doesTitleExist !== undefined && doesIdExist === undefined) {
-      setNameTakenContent({title: title, text: text, id: id, taken: true});
+      setNameTakenContent({
+        title: title,
+        text: text,
+        id: id,
+        wordcount: wordcount,
+        taken: true,
+      });
       return;
     }
     if (doesIdExist !== undefined) {
       const updatedFile = myProjects.map(project => {
         if (project.id === doesIdExist.id) {
-          return {...project, title: title, text: text};
+          return {...project, title: title, text: text, wordcount: wordcount};
         }
         return project;
       });
       setMyProjects([...updatedFile]);
     } else {
-      setMyProjects([...myProjects, {title: title, text: text, id: id}]);
+      setMyProjects([
+        ...myProjects,
+        {title: title, text: text, id: id, wordcount: wordcount},
+      ]);
     }
   }
 
