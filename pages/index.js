@@ -53,6 +53,7 @@ export default function Home() {
           saveProjects={saveProjects}
           setPage={setPage}
           setNameTakenContent={setNameTakenContent}
+          setEditorContent={setEditorContent}
         />
       ) : (
         <></>
