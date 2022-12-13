@@ -88,6 +88,7 @@ export default function Home() {
           saveProjects={saveProjects}
           handleChangePage={handleChangePage}
           editorContent={editorContent}
+          nameTakenContent={nameTakenContent}
         />
       ) : (
         <></>
