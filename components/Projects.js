@@ -19,7 +19,7 @@ export default function Projects({
       }
     }
     const newId = testEntry(lastEntry);
-    setEditorContent({title: "", text: "", id: newId});
+    setEditorContent({title: "", text: "", id: newId, wordcount: 0});
     handleChangePage("editor");
   }
   return (

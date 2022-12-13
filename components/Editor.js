@@ -17,25 +17,35 @@ export default function Editor({
     handleChangePage("my projects");
     saveProjects(title, text, id);
   };
+  function adjustWordcount(number) {
+    setWordcount(number.split(" ").length);
+  }
   return (
     <div>
       <Form onSubmit={handleSave}>
         <TitleField
           type="text"
           name="title"
-          id="title"
           placeholder="New Story"
           defaultValue={editorContent.title}
         ></TitleField>
+        <p>
+          You started today with {editorContent.wordcount} words and now you
+          have {wordcount}
+        </p>
         <TextField
+          type="text"
           name="text"
-          id="text"
           placeholder="It was a dark and stormy night..."
           defaultValue={editorContent.text}
+          onChange={e => {
+            adjustWordcount(e.target.value);
+          }}
         ></TextField>
         <ButtonContainer>
           <Button type="submit">Save and Quit</Button>
           <Button onClick={() => handleChangePage("my projects")}>Load</Button>
+          <Button onClick={() => console.log(editorContent)}>Console</Button>
         </ButtonContainer>
       </Form>
     </div>
