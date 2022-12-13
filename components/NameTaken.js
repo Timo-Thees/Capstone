@@ -11,6 +11,7 @@ export default function NameTaken({
   function handleReturnToEditor(title, text, id) {
     setEditorContent({title: title, text: text, id: id});
     setPage("editor");
+    setNameTakenContent({title: "", text: "", id: 0, taken: false});
   }
   function handleCloseWithoutSaving() {
     setNameTakenContent({title: "", text: "", id: 0, taken: false});
