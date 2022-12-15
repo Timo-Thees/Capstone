@@ -26,13 +26,14 @@ export default function Editor({
   };
   return (
     <div>
-      {finalCount.closingMessage &&
-      !nameTakenContent.taken && (
+      {finalCount.closingMessage && !nameTakenContent.taken === false ? (
         <ClosingPopup
           finalCount={finalCount}
           setFinalCount={setFinalCount}
           handleChangePage={handleChangePage}
         />
+      ) : (
+        <></>
       )}
       <Form onSubmit={handleSave}>
         <TitleField

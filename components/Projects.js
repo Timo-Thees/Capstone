@@ -33,13 +33,15 @@ export default function Projects({
   }
   return (
     <AllFiles>
-      {deletePopup && (
+      {deletePopup === true ? (
         <DeleteConfirm
           setDeletePopup={setDeletePopup}
           idForDeletion={idForDeletion}
           myProjects={myProjects}
           setMyProjects={setMyProjects}
         />
+      ) : (
+        <></>
       )}
       <FileBox>
         <h3>Start something new!</h3>
