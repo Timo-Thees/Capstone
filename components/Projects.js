@@ -5,8 +5,8 @@ export default function Projects({
   handleChangePage,
   setEditorContent,
 }) {
-  function handleLoadFile(title, text, id) {
-    setEditorContent({title: title, text: text, id: id});
+  function handleLoadFile(title, text, id, wordcount) {
+    setEditorContent({title: title, text: text, id: id, wordcount: wordcount});
     handleChangePage("editor");
   }
   function handleNewFile() {
@@ -19,7 +19,7 @@ export default function Projects({
       }
     }
     const newId = testEntry(lastEntry);
-    setEditorContent({title: "", text: "", id: newId});
+    setEditorContent({title: "", text: "", id: newId, wordcount: 0});
     handleChangePage("editor");
   }
   return (
@@ -35,7 +35,12 @@ export default function Projects({
             <article>{project.text}</article>
             <button
               onClick={() =>
-                handleLoadFile(project.title, project.text, project.id)
+                handleLoadFile(
+                  project.title,
+                  project.text,
+                  project.id,
+                  project.wordcount
+                )
               }
             >
               continue
