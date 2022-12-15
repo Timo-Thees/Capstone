@@ -85,6 +85,7 @@ export default function Home() {
           myProjects={myProjects}
           handleChangePage={handleChangePage}
           setEditorContent={setEditorContent}
+          setMyProjects={setMyProjects}
         />
       ) : (
         <></>
