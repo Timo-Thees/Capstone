@@ -69,9 +69,11 @@ export default function Home() {
         <NameTaken
           nameTakenContent={nameTakenContent}
           saveProjects={saveProjects}
+          setMyProjects={setMyProjects}
           setPage={setPage}
           setNameTakenContent={setNameTakenContent}
           setEditorContent={setEditorContent}
+          myProjects={myProjects}
         />
       ) : (
         <></>
