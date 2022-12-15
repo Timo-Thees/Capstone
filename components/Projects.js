@@ -6,7 +6,7 @@ export default function Projects({
   myProjects,
   handleChangePage,
   setEditorContent,
-  setMyProjects,
+  setMyProjects = {setMyProjects},
 }) {
   const [deletePopup, setDeletePopup] = useState(false);
   const [idForDeletion, setIdForDeletion] = useState();
