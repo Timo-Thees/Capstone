@@ -26,16 +26,19 @@ export default function NameTaken({
     saveProjects(title, text, id);
   };
   function handleOverwrite(content) {
-    const overwriteSave = {
-      title: content.title,
-      text: content.text,
-      wordcount: content.wordcount,
-      key: content.key,
-    };
-    setMyProjects(
-      myProjects.filter(project => project.title !== content.title)
-    );
-    setMyProjects(...myProjects, overwriteSave);
+    const updatedFile = myProjects.map(project => {
+      if (project.title === content.title) {
+        return {
+          ...project,
+          title: content.title,
+          text: content.text,
+          wordcount: content.wordcount,
+          id: content.id,
+        };
+      }
+      return project;
+    });
+    setMyProjects([...updatedFile]);
     setNameTakenContent({title: "", text: "", id: 0, taken: false});
   }
 
