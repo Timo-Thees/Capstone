@@ -2,19 +2,19 @@ import {Overlay, Dialog} from "../styles/PopupStyles";
 import {Button} from "./Button";
 
 export default function ClosingPopup({
-  finalCount,
-  setFinalCount,
+  sessionClose,
+  setSessionClose,
   handleChangePage,
 }) {
   function handleClick() {
     handleChangePage("progress");
-    setFinalCount({finalWordcount: 1000000, closingMessage: false});
+    setSessionClose({finalWordcount: 0, closingMessage: false});
   }
   return (
     <Overlay>
       <Dialog>
         <h3>
-          Congratulations! This session you wrote {finalCount.finalWordcount}{" "}
+          Congratulations! This session you wrote {sessionClose.wordcount}{" "}
           words! Good job!
         </h3>
         <Button onClick={() => handleClick()}>Nice!</Button>
