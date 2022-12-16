@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import {Button} from "./Button";
-import {ActiveButton} from "./Button";
+import {Button, ActiveButton} from "./Button";
 
 export default function Navigation({handleChangePage, page}) {
   return (
@@ -28,6 +27,10 @@ export default function Navigation({handleChangePage, page}) {
           Projects
         </Button>
       )}
+      <label class="switch">
+        <input type="checkbox" />
+        <span class="slider round"></span>
+      </label>
     </Nav>
   );
 }
