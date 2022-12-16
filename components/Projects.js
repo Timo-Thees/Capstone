@@ -1,10 +1,15 @@
 import styled from "styled-components";
+import {useState} from "react";
+import DeleteConfirm from "./DeleteConfirm";
 
 export default function Projects({
   myProjects,
   handleChangePage,
   setEditorContent,
+  setMyProjects = {setMyProjects},
 }) {
+  const [deletePopup, setDeletePopup] = useState(false);
+  const [idForDeletion, setIdForDeletion] = useState();
   function handleLoadFile(title, text, id, wordcount) {
     setEditorContent({title: title, text: text, id: id, wordcount: wordcount});
     handleChangePage("editor");
@@ -22,8 +27,20 @@ export default function Projects({
     setEditorContent({title: "", text: "", id: newId, wordcount: 0});
     handleChangePage("editor");
   }
+  function handleDeletion(entryYouWantDeleted) {
+    setIdForDeletion(entryYouWantDeleted);
+    setDeletePopup(true);
+  }
   return (
     <AllFiles>
+      {deletePopup && (
+        <DeleteConfirm
+          setDeletePopup={setDeletePopup}
+          idForDeletion={idForDeletion}
+          myProjects={myProjects}
+          setMyProjects={setMyProjects}
+        />
+      )}
       <FileBox>
         <h3>Start something new!</h3>
         <button onClick={() => handleNewFile()}>new document</button>
@@ -45,6 +62,7 @@ export default function Projects({
             >
               continue
             </button>
+            <button onClick={() => handleDeletion(project.id)}>delete</button>
           </FileBox>
         );
       })}

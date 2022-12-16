@@ -10,9 +10,9 @@ export default function Editor({
   editorContent,
   nameTakenContent,
 }) {
-  const [finalCount, setFinalCount] = useState({
-    finalWordcount: 0,
-    closingMessage: false,
+  const [sessionClose, setSessionClose] = useState({
+    wordcount: 0,
+    showClosingMessage: false,
   });
   const [wordcount, setWordcount] = useState(editorContent.wordcount);
   const handleSave = event => {
@@ -21,20 +21,17 @@ export default function Editor({
     const text = event.target.text.value;
     const id = editorContent.id;
     const finalWordCount = wordcount - editorContent.wordcount;
-    setFinalCount({finalWordcount: finalWordCount, closingMessage: true});
+    setSessionClose({wordcount: finalWordCount, showClosingMessage: true});
     saveProjects(title, text, id, wordcount);
   };
   return (
     <div>
-      {finalCount.closingMessage === true &&
-      nameTakenContent.taken === false ? (
+      {sessionClose.showClosingMessage && !nameTakenContent.taken && (
         <ClosingPopup
-          finalCount={finalCount}
-          setFinalCount={setFinalCount}
+          sessionClose={sessionClose}
+          setSessionClose={setSessionClose}
           handleChangePage={handleChangePage}
         />
-      ) : (
-        <></>
       )}
       <Form onSubmit={handleSave}>
         <TitleField

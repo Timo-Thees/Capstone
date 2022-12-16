@@ -6,13 +6,17 @@ import Projects from "../components/Projects";
 import NameTaken from "../components/NameTaken";
 import {useState} from "react";
 import styled from "styled-components";
+import {useLocalStorage} from "../components/useLocalStorage";
 
 export default function Home() {
   const [page, setPage] = useState("my projects");
   function handleChangePage(destination) {
     setPage(destination);
   }
-  const [myProjects, setMyProjects] = useState([]);
+  const [myProjects, setMyProjects] = useLocalStorage(
+    "WriteNow! Save files",
+    []
+  );
   const [editorContent, setEditorContent] = useState({
     title: "",
     text: "",
@@ -65,9 +69,11 @@ export default function Home() {
         <NameTaken
           nameTakenContent={nameTakenContent}
           saveProjects={saveProjects}
+          setMyProjects={setMyProjects}
           setPage={setPage}
           setNameTakenContent={setNameTakenContent}
           setEditorContent={setEditorContent}
+          myProjects={myProjects}
         />
       ) : (
         <></>
@@ -79,6 +85,7 @@ export default function Home() {
           myProjects={myProjects}
           handleChangePage={handleChangePage}
           setEditorContent={setEditorContent}
+          setMyProjects={setMyProjects}
         />
       ) : (
         <></>
