@@ -9,7 +9,7 @@ import styled from "styled-components";
 import {useLocalStorage} from "../components/useLocalStorage";
 
 export default function Home() {
-  const [page, setPage] = useState("my projects");
+  const [page, setPage] = useState("goals");
   function handleChangePage(destination) {
     setPage(destination);
   }
@@ -17,6 +17,10 @@ export default function Home() {
     "WriteNow! Save files",
     []
   );
+  const [progress, setProgress] = useLocalStorage("WriteNow! Progress file", {
+    goal: 0,
+    days: [],
+  });
   const [editorContent, setEditorContent] = useState({
     title: "",
     text: "",
@@ -78,7 +82,11 @@ export default function Home() {
       ) : (
         <></>
       )}
-      {page === "goals" ? <SetGoals /> : <></>}
+      {page === "goals" ? (
+        <SetGoals progress={progress} setProgess={setProgress} />
+      ) : (
+        <></>
+      )}
       {page === "progress" ? <Progress /> : <></>}
       {page === "my projects" ? (
         <Projects
