@@ -8,6 +8,7 @@ import {useState} from "react";
 import styled from "styled-components";
 
 export default function Home() {
+  const [darkmode, setDarkmode] = useState(true);
   const [page, setPage] = useState("my projects");
   function handleChangePage(destination) {
     setPage(destination);
@@ -59,8 +60,13 @@ export default function Home() {
   }
 
   return (
-    <Body>
-      <Navigation handleChangePage={handleChangePage} page={page} />
+    <Body darkmode={darkmode}>
+      <Navigation
+        handleChangePage={handleChangePage}
+        page={page}
+        darkmode={darkmode}
+        setDarkmode={setDarkmode}
+      />
       {nameTakenContent.taken === true ? (
         <NameTaken
           nameTakenContent={nameTakenContent}
@@ -68,17 +74,19 @@ export default function Home() {
           setPage={setPage}
           setNameTakenContent={setNameTakenContent}
           setEditorContent={setEditorContent}
+          darkmode={darkmode}
         />
       ) : (
         <></>
       )}
-      {page === "goals" ? <SetGoals /> : <></>}
-      {page === "progress" ? <Progress /> : <></>}
+      {page === "goals" ? <SetGoals darkmode={darkmode} /> : <></>}
+      {page === "progress" ? <Progress darkmode={darkmode} /> : <></>}
       {page === "my projects" ? (
         <Projects
           myProjects={myProjects}
           handleChangePage={handleChangePage}
           setEditorContent={setEditorContent}
+          darkmode={darkmode}
         />
       ) : (
         <></>
@@ -89,6 +97,7 @@ export default function Home() {
           handleChangePage={handleChangePage}
           editorContent={editorContent}
           nameTakenContent={nameTakenContent}
+          darkmode={darkmode}
         />
       ) : (
         <></>
@@ -98,7 +107,7 @@ export default function Home() {
 }
 
 const Body = styled.div`
-  background: #eeeeee;
+  background: ${props => (props.darkmode ? "darkblue" : "eggwhite")};
   width: 100vw;
   height: 150vh;
 `;

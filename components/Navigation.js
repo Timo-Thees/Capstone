@@ -1,7 +1,12 @@
 import styled from "styled-components";
 import {Button, ActiveButton} from "./Button";
 
-export default function Navigation({handleChangePage, page}) {
+export default function Navigation({
+  handleChangePage,
+  page,
+  darkmode,
+  setDarkmode,
+}) {
   return (
     <Nav>
       {page === "goals" ? (
@@ -27,10 +32,8 @@ export default function Navigation({handleChangePage, page}) {
           Projects
         </Button>
       )}
-      <label class="switch">
-        <input type="checkbox" />
-        <span class="slider round"></span>
-      </label>
+      <Button onClick={() => setDarkmode(!darkmode)}>Darkmode</Button>
+      <Button onClick={() => console.log(darkmode)}>Is this thing on?</Button>
     </Nav>
   );
 }
