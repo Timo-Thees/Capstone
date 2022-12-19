@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {TitleField, TextField} from "./Textfields";
-import {Button} from "./Button";
+import {Button, ButtonContainer} from "./Button";
 import {useState} from "react";
 import ClosingPopup from "./ClosingMessage";
 
@@ -40,10 +40,10 @@ export default function Editor({
           placeholder="New Story"
           defaultValue={editorContent.title}
         ></TitleField>
-        <p>
-          You started today with {editorContent.wordcount} words and now you
+        {/*<p>
+           You started today with {editorContent.wordcount} words and now you
           have {wordcount}
-        </p>
+        </p> */}
         <TextField
           type="text"
           name="text"
@@ -68,10 +68,4 @@ const Form = styled.form`
   align-self: center;
   padding: 50px;
   gap: 50px;
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
 `;

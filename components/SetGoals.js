@@ -1,5 +1,7 @@
 import {useState} from "react";
 import Timeslot from "./Timeslot";
+import {Button /*ButtonContainer, ButtonDanger*/} from "./Button";
+import styled from "styled-components";
 
 const weekday = [
   "Monday",
@@ -26,7 +28,7 @@ export default function SetGoals() {
     <>
       <label>How many words do you want to write each day?</label>
       <input type="number"></input>
-      <ul>
+      <Calendar>
         {weekday.map(day => {
           return (
             <li key={weekday.index}>
@@ -42,11 +44,16 @@ export default function SetGoals() {
                   );
                 }
               })}
-              <button onClick={() => handleNewTimeslot(day)}>+</button>
+              <Button onClick={() => handleNewTimeslot(day)}>+</Button>
             </li>
           );
         })}
-      </ul>
+      </Calendar>
     </>
   );
 }
+
+const Calendar = styled.ul`
+  direction: flex;
+  flex-direction: row;
+`;

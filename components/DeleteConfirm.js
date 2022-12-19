@@ -1,4 +1,5 @@
 import {Overlay, Dialog, ButtonBox} from "../styles/PopupStyles";
+import {Button, ButtonContainer, ButtonDanger} from "./Button";
 
 export default function DeleteConfirm({
   setDeletePopup,
@@ -15,8 +16,12 @@ export default function DeleteConfirm({
       <Dialog>
         <h2>Do you really want to delete this story?</h2>
         <ButtonBox>
-          <button onClick={() => confirmDeletion(idForDeletion)}>Yes</button>
-          <button onClick={() => setDeletePopup(false)}>Abort</button>
+          <ButtonContainer>
+            <ButtonDanger onClick={() => confirmDeletion(idForDeletion)}>
+              Yes
+            </ButtonDanger>
+            <Button onClick={() => setDeletePopup(false)}>Abort</Button>
+          </ButtonContainer>
         </ButtonBox>
       </Dialog>
     </Overlay>

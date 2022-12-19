@@ -106,6 +106,6 @@ export default function Home() {
 
 const Body = styled.div`
   background: #eeeeee;
-  width: 100vw;
-  height: 150vh;
+  width: 100%;
+  height: 100%;
 `;

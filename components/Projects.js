@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {useState} from "react";
 import DeleteConfirm from "./DeleteConfirm";
+import {Button, ButtonContainer, ButtonDanger} from "./Button";
 
 export default function Projects({
   myProjects,
@@ -43,26 +44,30 @@ export default function Projects({
       )}
       <FileBox>
         <h3>Start something new!</h3>
-        <button onClick={() => handleNewFile()}>new document</button>
+        <Button onClick={() => handleNewFile()}>new document</Button>
       </FileBox>
       {myProjects.map(project => {
         return (
           <FileBox key={project.id}>
             <h3>{project.title}</h3>
-            <article>{project.text}</article>
-            <button
-              onClick={() =>
-                handleLoadFile(
-                  project.title,
-                  project.text,
-                  project.id,
-                  project.wordcount
-                )
-              }
-            >
-              continue
-            </button>
-            <button onClick={() => handleDeletion(project.id)}>delete</button>
+            <TextPreview>{project.text}</TextPreview>
+            <ButtonContainer>
+              <Button
+                onClick={() =>
+                  handleLoadFile(
+                    project.title,
+                    project.text,
+                    project.id,
+                    project.wordcount
+                  )
+                }
+              >
+                continue
+              </Button>
+              <ButtonDanger onClick={() => handleDeletion(project.id)}>
+                delete
+              </ButtonDanger>
+            </ButtonContainer>
           </FileBox>
         );
       })}
@@ -74,12 +79,23 @@ const AllFiles = styled.div`
   margin-left: 10vw;
   margin-right: 10vw;
   display: grid;
-  background-color: salmon;
-  padding: 2vh 2vw;
-  gap: 2vh;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto auto auto;
+  grid-auto-flow: row dense;
+  gap: 3%;
 `;
 
 const FileBox = styled.div`
-  background-color: lightblue;
+  background-color: #b2d7df;
+  border-radius: 20px;
   padding: 2vh 2vw;
+  max-width: 80vw;
+  max-height: 40vh;
+`;
+
+const TextPreview = styled.article`
+  max-height: 20vh;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  margin-bottom: 3vh;
 `;

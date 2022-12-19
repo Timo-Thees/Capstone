@@ -7,7 +7,7 @@ export default function ClosingPopup({
   handleChangePage,
 }) {
   function handleClick() {
-    handleChangePage("progress");
+    handleChangePage("my projects");
     setSessionClose({finalWordcount: 0, closingMessage: false});
   }
   return (
