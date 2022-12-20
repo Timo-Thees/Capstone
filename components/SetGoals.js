@@ -13,6 +13,7 @@ const weekday = [
 ];
 
 export default function SetGoals({progress, setProgress}) {
+  setProgress = {setProgress};
   const [writingTime, setWritingTime] = useState([{weekday: "never", key: 0}]);
   function handleNewTimeslot(Day) {
     const lastEntry = writingTime[writingTime.length - 1];
