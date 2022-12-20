@@ -17,10 +17,10 @@ export default function Home() {
     "WriteNow! Save files",
     []
   );
-  const [progress, setProgress] = useLocalStorage("WriteNow! Progress file", {
-    goal: 0,
-    days: [],
-  });
+  const [progress, setProgress] = useLocalStorage(
+    "WriteNow! Progress files",
+    []
+  );
   const [editorContent, setEditorContent] = useState({
     title: "",
     text: "",

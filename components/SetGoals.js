@@ -13,7 +13,6 @@ const weekday = [
 ];
 
 export default function SetGoals({progress, setProgress}) {
-  setProgress = {setProgress};
   const [writingTime, setWritingTime] = useState([{weekday: "never", key: 0}]);
   function handleNewTimeslot(Day) {
     const lastEntry = writingTime[writingTime.length - 1];
@@ -24,9 +23,9 @@ export default function SetGoals({progress, setProgress}) {
     event.preventDefault();
     setWritingTime(writingTime.filter(time => time.key !== keyForDeletion));
   }
-  function handelSetGoals(e) {
+  function handelSetGoals() {
     event.preventDefault();
-    setProgress({...progress, goal: e});
+    setProgress({goal: 15});
   }
   return (
     <>
