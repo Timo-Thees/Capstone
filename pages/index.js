@@ -17,10 +17,9 @@ export default function Home() {
     "WriteNow! Save files",
     []
   );
-  const [progress, setProgress] = useLocalStorage(
-    "WriteNow! Progress files",
-    []
-  );
+  const [progress, setProgress] = useLocalStorage("WriteNow! Progress files", {
+    Exampledate: 0,
+  });
   const [editorContent, setEditorContent] = useState({
     title: "",
     text: "",
@@ -83,7 +82,7 @@ export default function Home() {
         <></>
       )}
       {page === "goals" ? (
-        <SetGoals progress={progress} setProgess={setProgress} />
+        <SetGoals progress={progress} setProgress={setProgress} />
       ) : (
         <></>
       )}
