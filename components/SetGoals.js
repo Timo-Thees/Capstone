@@ -1,41 +1,38 @@
-import {useState} from "react";
 import Timeslot from "./Timeslot";
 import {Button} from "./Button";
-// import {useLocalStorage} from "../components/useLocalStorage";
 
 const weekday = [
-  {weekday: "Monday", key: 1},
-  {weekday: "Tuesday", key: 2},
-  {weekday: "Wednesday", key: 3},
-  {weekday: "Thursday", key: 4},
-  {weekday: "Friday", key: 5},
-  {weekday: "Saturday", key: 6},
-  {weekday: "Sunday", key: 0},
+  {weekday: "Monday", numberOfDay: 1},
+  {weekday: "Tuesday", numberOfDay: 2},
+  {weekday: "Wednesday", numberOfDay: 3},
+  {weekday: "Thursday", numberOfDay: 4},
+  {weekday: "Friday", numberOfDay: 5},
+  {weekday: "Saturday", numberOfDay: 6},
+  {weekday: "Sunday", numberOfDay: 0},
 ];
 
 export default function SetGoals({writingGoals, setWritingGoals}) {
-  const [writingTime, setWritingTime] = useState([{weekday: "never", key: 0}]);
-  const [wordGoals, setWordGoals] = useState(0);
-
   function handleNewTimeslot(day) {
-    const lastEntry = writingTime[writingTime.length - 1];
+    const lastEntry = writingGoals[writingGoals.length - 1];
     const newKey = lastEntry.key + 1;
-    setWritingTime([...writingTime, {weekday: day, key: newKey}]);
-    updateWritingGoals(day);
+    const writingGoal = lastEntry.writingGoal;
+    setWritingGoals([
+      ...writingGoals,
+      {writingGoal: writingGoal, weekday: day, key: newKey},
+    ]);
   }
-  function handleDeleteTimeslot(keyForDeletion, day) {
+  function handleDeleteTimeslot(keyForDeletion) {
     event.preventDefault();
-    setWritingTime(writingTime.filter(time => time.key !== keyForDeletion));
-    updateWritingGoals(day);
-  }
-  function updateWritingGoals(day) {
-    const doIWriteThisDay = writingTime.find(
-      timeslot => timeslot.weekday === day
-    );
+    setWritingGoals(writingGoals.filter(time => time.key !== keyForDeletion));
   }
   const handelSetGoals = event => {
     event.preventDefault();
-    setWordGoals(event.target.goal.value);
+    const newGoal = event.target.goal.value;
+    setWritingGoals(
+      writingGoals.map(entry => {
+        return {...entry, writingGoal: newGoal * 1};
+      })
+    );
   };
   return (
     <>
@@ -43,15 +40,14 @@ export default function SetGoals({writingGoals, setWritingGoals}) {
       <form onSubmit={handelSetGoals}>
         <input type="number" id="goal"></input>
         <Button type="submit">Set Goal</Button>
-        <Button onClick={() => console.log(wordGoals)}>Show Goals</Button>
       </form>
       <ul>
         {weekday.map(day => {
           return (
             <li key={day.key}>
               {day.weekday}
-              {writingTime.map(timeslot => {
-                if (timeslot.weekday === day.weekday) {
+              {writingGoals.map(timeslot => {
+                if (timeslot.weekday === day.numberOfDay) {
                   return (
                     <Timeslot
                       key={timeslot.key}
@@ -62,7 +58,9 @@ export default function SetGoals({writingGoals, setWritingGoals}) {
                   );
                 }
               })}
-              <button onClick={() => handleNewTimeslot(day.weekday)}>+</button>
+              <button onClick={() => handleNewTimeslot(day.numberOfDay)}>
+                +
+              </button>
             </li>
           );
         })}

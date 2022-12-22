@@ -17,10 +17,13 @@ export default function Home() {
     "WriteNow! Save files",
     []
   );
-  const [writingGoals, setWritingGoals] = useLocalStorage("writeNow! goals", {
-    writingGoal: 0,
-    Weekdays: [],
-  });
+  const [writingGoals, setWritingGoals] = useLocalStorage("writeNow! goals", [
+    {
+      writingGoal: 0,
+      weekday: "",
+      key: 0,
+    },
+  ]);
   const [dailyProgress, setDailyProgress] = useLocalStorage(
     "WriteNow! progressTracker",
     []
