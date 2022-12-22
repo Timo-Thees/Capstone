@@ -3,12 +3,14 @@ import {TitleField, TextField} from "./Textfields";
 import {Button} from "./Button";
 import {useState} from "react";
 import ClosingPopup from "./ClosingMessage";
+// import {progressTracker} from "./progressTracker";
 
 export default function Editor({
   saveProjects,
   handleChangePage,
   editorContent,
   nameTakenContent,
+  progressTracker,
 }) {
   const [sessionClose, setSessionClose] = useState({
     wordcount: 0,
@@ -22,6 +24,7 @@ export default function Editor({
     const id = editorContent.id;
     const finalWordCount = wordcount - editorContent.wordcount;
     setSessionClose({wordcount: finalWordCount, showClosingMessage: true});
+    progressTracker(finalWordCount);
     saveProjects(title, text, id, wordcount);
   };
   return (

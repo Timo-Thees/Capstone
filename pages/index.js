@@ -9,7 +9,7 @@ import styled from "styled-components";
 import {useLocalStorage} from "../components/useLocalStorage";
 
 export default function Home() {
-  const [page, setPage] = useState("goals");
+  const [page, setPage] = useState("my projects");
   function handleChangePage(destination) {
     setPage(destination);
   }
@@ -17,9 +17,44 @@ export default function Home() {
     "WriteNow! Save files",
     []
   );
-  const [progress, setProgress] = useLocalStorage("WriteNow! Progress files", {
-    Exampledate: 0,
+  const [writingGoals, setWritingGoals] = useLocalStorage("writeNow! goals", {
+    writingGoal: 0,
+    Weekdays: [],
   });
+  const [dailyProgress, setDailyProgress] = useLocalStorage(
+    "WriteNow! progressTracker",
+    []
+  );
+  function progressTracker(wordsIWroteThisSession) {
+    const today = new Date();
+    const weekday = today.getDay();
+    const dayOfTheMonth = today.getDate();
+    const month = today.getMonth();
+    const calenderDay = `${dayOfTheMonth}` + "." + (month + 1);
+    const dailyProgressReport = {
+      weekday: weekday,
+      calenderDay: calenderDay,
+      wordsIWroteToday: 0,
+    };
+    const didIwriteToday = dailyProgress.find(
+      progressReports => progressReports.weekday === weekday
+    );
+    if (didIwriteToday !== undefined) {
+      const newNumber =
+        didIwriteToday.wordsIWroteToday + wordsIWroteThisSession;
+      const updatedReport = {...didIwriteToday, wordsIWroteToday: newNumber};
+      const newArray = dailyProgress.filter(
+        dailyReports => dailyReports.calenderDay !== calenderDay
+      );
+      setDailyProgress([...newArray, updatedReport]);
+    } else {
+      const newReport = {
+        ...dailyProgressReport,
+        wordsIWroteToday: wordsIWroteThisSession,
+      };
+      setDailyProgress([...dailyProgress, newReport]);
+    }
+  }
   const [editorContent, setEditorContent] = useState({
     title: "",
     text: "",
@@ -82,7 +117,10 @@ export default function Home() {
         <></>
       )}
       {page === "goals" ? (
-        <SetGoals progress={progress} setProgress={setProgress} />
+        <SetGoals
+          writingGoals={writingGoals}
+          setWritingGoals={setWritingGoals}
+        />
       ) : (
         <></>
       )}
@@ -103,6 +141,7 @@ export default function Home() {
           handleChangePage={handleChangePage}
           editorContent={editorContent}
           nameTakenContent={nameTakenContent}
+          progressTracker={progressTracker}
         />
       ) : (
         <></>

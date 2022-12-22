@@ -4,16 +4,16 @@ import {Button} from "./Button";
 // import {useLocalStorage} from "../components/useLocalStorage";
 
 const weekday = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
+  {weekday: "Monday", key: 1},
+  {weekday: "Tuesday", key: 2},
+  {weekday: "Wednesday", key: 3},
+  {weekday: "Thursday", key: 4},
+  {weekday: "Friday", key: 5},
+  {weekday: "Saturday", key: 6},
+  {weekday: "Sunday", key: 0},
 ];
 
-export default function SetGoals({progress, setProgress}) {
+export default function SetGoals({writingGoals, setWritingGoals}) {
   const [writingTime, setWritingTime] = useState([{weekday: "never", key: 0}]);
   const [wordGoals, setWordGoals] = useState(0);
 
@@ -32,12 +32,6 @@ export default function SetGoals({progress, setProgress}) {
     const doIWriteThisDay = writingTime.find(
       timeslot => timeslot.weekday === day
     );
-    if (doIWriteThisDay === undefined) {
-      setProgress({...progress, [day]: 0});
-    } else {
-      setProgress({...progress, [day]: wordGoals});
-    }
-    console.log(progress);
   }
   const handelSetGoals = event => {
     event.preventDefault();
@@ -54,10 +48,10 @@ export default function SetGoals({progress, setProgress}) {
       <ul>
         {weekday.map(day => {
           return (
-            <li key={weekday.index}>
-              {day}
+            <li key={day.key}>
+              {day.weekday}
               {writingTime.map(timeslot => {
-                if (timeslot.weekday === day) {
+                if (timeslot.weekday === day.weekday) {
                   return (
                     <Timeslot
                       key={timeslot.key}
@@ -68,7 +62,7 @@ export default function SetGoals({progress, setProgress}) {
                   );
                 }
               })}
-              <button onClick={() => handleNewTimeslot(day)}>+</button>
+              <button onClick={() => handleNewTimeslot(day.weekday)}>+</button>
             </li>
           );
         })}
