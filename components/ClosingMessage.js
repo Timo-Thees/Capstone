@@ -14,8 +14,10 @@ export default function ClosingPopup({
     );
     const closingDialogePartOne = `Congratulations! This session you wrote ${sessionClose.wordcount} words!`;
     if (didIPlanToWriteToday !== undefined) {
-      const wordsIWroteToday = dailyProgress.wordsIWroteToday;
-      const myGoal = writingGoals.writingGoal;
+      const wordsIWroteToday =
+        dailyProgress[dailyProgress.length - 1].wordsIWroteToday;
+      const myGoal = writingGoals[writingGoals.length - 1].writingGoal;
+      console.log(dailyProgress[dailyProgress.length - 1].wordsIWroteToday);
       if (wordsIWroteToday < myGoal / 4) {
         const closingDialogePartTwo =
           "You did not reach your goal, but you made an effort, and that counts";
@@ -38,7 +40,8 @@ export default function ClosingPopup({
           "You met your goal today! Excelent progress!";
         return [closingDialogePartOne, closingDialogePartTwo];
       } else if (wordsIWroteToday > myGoal) {
-        const closingDialogePartTwo = "Wow! You are on fire!";
+        const closingDialogePartTwo =
+          "Today you wrote even more than you planed. Wow! You are on fire!";
         return [closingDialogePartOne, closingDialogePartTwo];
       }
     } else {
@@ -58,9 +61,6 @@ export default function ClosingPopup({
         <h3>{closingDialogePartOne}</h3>
         <p>{closingDialogePartTwo}</p>
         <Button onClick={() => handleClick()}>Nice!</Button>
-        <Button onClick={() => console.log(closingDialogePartOne)}>
-          Show message
-        </Button>
       </Dialog>
     </Overlay>
   );
