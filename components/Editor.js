@@ -3,7 +3,6 @@ import {TitleField, TextField} from "./Textfields";
 import {Button} from "./Button";
 import {useState} from "react";
 import ClosingPopup from "./ClosingMessage";
-// import {progressTracker} from "./progressTracker";
 
 export default function Editor({
   saveProjects,
@@ -11,6 +10,8 @@ export default function Editor({
   editorContent,
   nameTakenContent,
   progressTracker,
+  writingGoals,
+  dailyProgress,
 }) {
   const [sessionClose, setSessionClose] = useState({
     wordcount: 0,
@@ -34,6 +35,8 @@ export default function Editor({
           sessionClose={sessionClose}
           setSessionClose={setSessionClose}
           handleChangePage={handleChangePage}
+          writingGoals={writingGoals}
+          dailyProgress={dailyProgress}
         />
       )}
       <Form onSubmit={handleSave}>

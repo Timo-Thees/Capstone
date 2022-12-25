@@ -145,6 +145,8 @@ export default function Home() {
           editorContent={editorContent}
           nameTakenContent={nameTakenContent}
           progressTracker={progressTracker}
+          writingGoals={writingGoals}
+          dailyProgress={dailyProgress}
         />
       ) : (
         <></>
