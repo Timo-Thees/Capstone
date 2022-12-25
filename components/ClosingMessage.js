@@ -10,7 +10,7 @@ export default function ClosingPopup({
 }) {
   function compareProgressAndGoals(writingGoals, dailyProgress, sessionClose) {
     const didIPlanToWriteToday = writingGoals.find(
-      writingGoals => (writingGoals.weekday = dailyProgress.weekday)
+      writingGoals => writingGoals.weekday === dailyProgress.weekday
     );
     const closingDialogePartOne = `Congratulations! This session you wrote ${sessionClose.wordcount} words!`;
     if (didIPlanToWriteToday !== undefined) {
@@ -19,31 +19,31 @@ export default function ClosingPopup({
       if (wordsIWroteToday < myGoal / 4) {
         const closingDialogePartTwo =
           "You did not reach your goal, but you made an effort, and that counts";
-        return closingDialogePartOne, closingDialogePartTwo;
+        return [closingDialogePartOne, closingDialogePartTwo];
       } else if (
         wordsIWroteToday >= myGoal / 4 &&
         wordsIWroteToday < (myGoal / 3) * 2
       ) {
         const closingDialogePartTwo =
           "You made a lot of progress this session.";
-        return closingDialogePartOne, closingDialogePartTwo;
+        return [closingDialogePartOne, closingDialogePartTwo];
       } else if (
         wordsIWroteToday >= (myGoal / 3) * 2 &&
         wordsIWroteToday < myGoal
       ) {
         const closingDialogePartTwo = "Excelent progress!";
-        return closingDialogePartOne, closingDialogePartTwo;
+        return [closingDialogePartOne, closingDialogePartTwo];
       } else if (wordsIWroteToday === myGoal) {
         const closingDialogePartTwo =
           "You met your goal today! Excelent progress!";
-        return closingDialogePartOne, closingDialogePartTwo;
+        return [closingDialogePartOne, closingDialogePartTwo];
       } else if (wordsIWroteToday > myGoal) {
         const closingDialogePartTwo = "Wow! You are on fire!";
-        return closingDialogePartOne, closingDialogePartTwo;
+        return [closingDialogePartOne, closingDialogePartTwo];
       }
     } else {
       const closingDialogePartTwo = "And you didnt even plan to write today...";
-      return closingDialogePartOne, closingDialogePartTwo;
+      return [closingDialogePartOne, closingDialogePartTwo];
     }
   }
   function handleClick() {
@@ -55,11 +55,12 @@ export default function ClosingPopup({
   return (
     <Overlay>
       <Dialog>
-        <p>
-          {closingDialogePartOne}
-          {closingDialogePartTwo}
-        </p>
+        <h3>{closingDialogePartOne}</h3>
+        <p>{closingDialogePartTwo}</p>
         <Button onClick={() => handleClick()}>Nice!</Button>
+        <Button onClick={() => console.log(closingDialogePartOne)}>
+          Show message
+        </Button>
       </Dialog>
     </Overlay>
   );
