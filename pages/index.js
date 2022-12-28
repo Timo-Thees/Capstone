@@ -157,6 +157,7 @@ export default function Home() {
 
 const Body = styled.div`
   background: #eeeeee;
+  background-attachment: fixed;
   width: 100vw;
   height: 150vh;
 `;
