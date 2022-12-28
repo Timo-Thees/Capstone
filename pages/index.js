@@ -28,6 +28,10 @@ export default function Home() {
     "WriteNow! progressTracker",
     []
   );
+  const [sessionClose, setSessionClose] = useState({
+    wordcount: 0,
+    showClosingMessage: false,
+  });
   function progressTracker(wordsIWroteThisSession) {
     const today = new Date();
     const weekday = today.getDay();
@@ -77,6 +81,7 @@ export default function Home() {
     }
     const doesTitleExist = myProjects.find(project => project.title === title);
     const doesIdExist = myProjects.find(project => project.id === id);
+    console.log(doesIdExist);
     if (doesTitleExist !== undefined && doesIdExist === undefined) {
       setNameTakenContent({
         title: title,
@@ -115,6 +120,7 @@ export default function Home() {
           setNameTakenContent={setNameTakenContent}
           setEditorContent={setEditorContent}
           myProjects={myProjects}
+          setSessionClose={setSessionClose}
         />
       ) : (
         <></>
@@ -147,6 +153,8 @@ export default function Home() {
           progressTracker={progressTracker}
           writingGoals={writingGoals}
           dailyProgress={dailyProgress}
+          sessionClose={sessionClose}
+          setSessionClose={setSessionClose}
         />
       ) : (
         <></>
@@ -158,6 +166,6 @@ export default function Home() {
 const Body = styled.div`
   background: #eeeeee;
   background-attachment: fixed;
-  width: 100vw;
-  height: 150vh;
+  width: 100%;
+  height: 100%;
 `;

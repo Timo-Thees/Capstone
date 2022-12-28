@@ -22,7 +22,7 @@ export const Dialog = styled.div`
   margin-right: auto;
   margin-top: 2.5rem;
   max-width: 100%;
-  width: 50vw;
+  width: 70vw;
   padding: 20px;
   display: flex;
   flex-direction: column;

@@ -1,5 +1,6 @@
 import {TitleField} from "./Textfields";
-import {Overlay, Dialog, ButtonBox} from "../styles/PopupStyles";
+import {Overlay, Dialog} from "../styles/PopupStyles";
+import {Button, DangerButton, ButtonBox} from "./Button";
 
 export default function NameTaken({
   nameTakenContent,
@@ -9,10 +10,15 @@ export default function NameTaken({
   setEditorContent,
   setMyProjects,
   myProjects,
+  setSessionClose,
 }) {
   function handleReturnToEditor(title, text, id) {
     setEditorContent({title: title, text: text, id: id});
     setPage("editor");
+    setSessionClose({
+      wordcount: 0,
+      showClosingMessage: false,
+    });
     setNameTakenContent({title: "", text: "", id: 0, taken: false});
   }
   function handleCloseWithoutSaving() {
@@ -23,8 +29,9 @@ export default function NameTaken({
     const title = event.target.title.value;
     const text = nameTakenContent.text;
     const id = nameTakenContent.id;
+    const wordcount = nameTakenContent.wordcount;
     setNameTakenContent({title: "", text: "", id: 0, taken: false});
-    saveProjects(title, text, id);
+    saveProjects(title, text, id, wordcount);
   };
   function handleOverwrite(content) {
     const updatedFile = myProjects.map(project => {
@@ -58,16 +65,16 @@ export default function NameTaken({
             defaultValue={nameTakenContent.title}
           ></TitleField>
           <ButtonBox>
-            <button type="submit">Save</button>
-            <button onClick={() => handleOverwrite(nameTakenContent)}>
-              Overwrite the existing save
-            </button>
-            <button onClick={() => handleCloseWithoutSaving()}>
+            <Button type="submit">Save</Button>
+            <DangerButton onClick={() => handleOverwrite(nameTakenContent)}>
+              Overwrite save
+            </DangerButton>
+            <DangerButton onClick={() => handleCloseWithoutSaving()}>
               Close without saving
-            </button>
-            <button onClick={() => handleReturnToEditor()}>
+            </DangerButton>
+            <Button onClick={() => handleReturnToEditor()}>
               Return to editor
-            </button>
+            </Button>
           </ButtonBox>
         </form>
       </Dialog>

@@ -1,4 +1,4 @@
-import {AllFiles, FileBox} from "./Boxes";
+import {AllFiles, FileBox, TextPreview, Fade} from "./Boxes";
 import {useState} from "react";
 import DeleteConfirm from "./DeleteConfirm";
 import {Button, DangerButton, ButtonBox} from "./Button";
@@ -16,7 +16,9 @@ export default function Projects({
     handleChangePage("editor");
   }
   function handleNewFile() {
-    const lastEntry = myProjects[myProjects.length - 1];
+    const coppyArray = [...myProjects];
+    const sortetById = coppyArray.sort((a, b) => a.id - b.id);
+    const lastEntry = sortetById[sortetById.length - 1];
     function testEntry(entryToTest) {
       if (entryToTest === undefined) {
         return 0;
@@ -50,7 +52,9 @@ export default function Projects({
         return (
           <FileBox key={project.id}>
             <h3>{project.title}</h3>
-            <article>{project.text}</article>
+            <Fade>
+              <TextPreview>{project.text}</TextPreview>
+            </Fade>
             <ButtonBox>
               <Button
                 onClick={() =>

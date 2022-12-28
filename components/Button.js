@@ -7,6 +7,9 @@ export const Button = styled.button`
   border-radius: 20px;
   border: none;
   color: white;
+  &:active {
+    box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25);
+  }
 `;
 export const ActiveButton = styled.button`
   width: 80px;
@@ -15,6 +18,9 @@ export const ActiveButton = styled.button`
   border-radius: 20px;
   border: none;
   color: white;
+  &:active {
+    box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25);
+  }
 `;
 export const DangerButton = styled.button`
   width: 80px;
@@ -23,6 +29,9 @@ export const DangerButton = styled.button`
   border-radius: 20px;
   border: none;
   color: white;
+  &:active {
+    box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25);
+  }
 `;
 
 export const ButtonBox = styled.div`

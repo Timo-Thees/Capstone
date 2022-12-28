@@ -12,11 +12,9 @@ export default function Editor({
   progressTracker,
   writingGoals,
   dailyProgress,
+  sessionClose,
+  setSessionClose,
 }) {
-  const [sessionClose, setSessionClose] = useState({
-    wordcount: 0,
-    showClosingMessage: false,
-  });
   const [wordcount, setWordcount] = useState(editorContent.wordcount);
   const handleSave = event => {
     event.preventDefault();
