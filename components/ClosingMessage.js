@@ -1,5 +1,7 @@
 import {Overlay, Dialog} from "../styles/PopupStyles";
 import {Button} from "./Button";
+import styled from "styled-components";
+import {keyframes} from "styled-components";
 
 export default function ClosingPopup({
   sessionClose,
@@ -60,8 +62,25 @@ export default function ClosingPopup({
       <Dialog>
         <h3>{closingDialogePartOne}</h3>
         <p>{closingDialogePartTwo}</p>
+        <ProgressBar />
         <Button onClick={() => handleClick()}>Nice!</Button>
       </Dialog>
     </Overlay>
   );
 }
+const animationProgressBar = keyframes`
+0% {width: 0%;}
+30% {width: 15%;}
+80% {width: 90%;}
+100% {width: 100%}
+`;
+
+const ProgressBar = styled.div`
+  height: 35px;
+  width: 40vw;
+  background-color: green;
+  border-radius: 20px;
+  animation-name: ${animationProgressBar};
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+`;

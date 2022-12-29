@@ -1,8 +1,20 @@
-export default function Progress() {
+import {AllFiles, FileBox} from "./Boxes";
+
+export default function Progress({dailyProgress}) {
+  const newestFirst = [...dailyProgress];
+  newestFirst.filter((a, b) => b.calenderDay * 1 - a.calenderDay * 1);
   return (
-    <>
-      <h1>Write now!</h1>
-      <p>The app to help you develop a writing habit</p>
-    </>
+    <AllFiles>
+      {dailyProgress.map(day => {
+        return (
+          <FileBox key={day.calenderDay}>
+            <p>
+              Date: {day.calenderDay}. Words written: {day.wordsIWroteToday}.
+              Goal reached: {day.goalReached}
+            </p>
+          </FileBox>
+        );
+      })}
+    </AllFiles>
   );
 }

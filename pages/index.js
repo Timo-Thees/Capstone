@@ -38,6 +38,7 @@ export default function Home() {
     const dayOfTheMonth = today.getDate();
     const month = today.getMonth();
     const calenderDay = `${dayOfTheMonth}` + "." + (month + 1);
+    const myGoal = writingGoals[0].writingGoal;
     const dailyProgressReport = {
       weekday: weekday,
       calenderDay: calenderDay,
@@ -49,7 +50,12 @@ export default function Home() {
     if (didIwriteToday !== undefined) {
       const newNumber =
         didIwriteToday.wordsIWroteToday + wordsIWroteThisSession;
-      const updatedReport = {...didIwriteToday, wordsIWroteToday: newNumber};
+      const goalReached = `Today I wrote ${newNumber} words from my set goal of ${myGoal}`;
+      const updatedReport = {
+        ...didIwriteToday,
+        wordsIWroteToday: newNumber,
+        goalReached: goalReached,
+      };
       const newArray = dailyProgress.filter(
         dailyReports => dailyReports.calenderDay !== calenderDay
       );
@@ -133,7 +139,7 @@ export default function Home() {
       ) : (
         <></>
       )}
-      {page === "progress" ? <Progress /> : <></>}
+      {page === "progress" ? <Progress dailyProgress={dailyProgress} /> : <></>}
       {page === "my projects" ? (
         <Projects
           myProjects={myProjects}
