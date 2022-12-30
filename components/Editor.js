@@ -22,7 +22,15 @@ export default function Editor({
     const text = event.target.text.value;
     const id = editorContent.id;
     const finalWordCount = wordcount - editorContent.wordcount;
-    setSessionClose({wordcount: finalWordCount, showClosingMessage: true});
+    const today = new Date();
+    const dayOfTheMonth = today.getDate();
+    const month = today.getMonth();
+    const calenderDay = `${dayOfTheMonth}` + "." + (month + 1);
+    setSessionClose({
+      wordcount: finalWordCount,
+      showClosingMessage: true,
+      calendarDay: calenderDay,
+    });
     progressTracker(finalWordCount);
     saveProjects(title, text, id, wordcount);
   };

@@ -51,6 +51,28 @@ export default function ClosingPopup({
       return [closingDialogePartOne, closingDialogePartTwo];
     }
   }
+  function decideLengthOfProgressBar() {
+    const progressReportOfToday = dailyProgress.find(
+      progressReport => progressReport.calendarDay === sessionClose.calendarDay
+    );
+    const didIPlanToWriteToday = writingGoals.find(
+      writingGoals => writingGoals.weekday === dailyProgress.weekday
+    );
+    if (didIPlanToWriteToday === undefined) {
+      return "40vw";
+    } else if (progressReportOfToday === undefined) {
+      console.log("progressReportOfToday is undefined for some reason");
+      return "40vw";
+    } else {
+      const wordsIWroteToday = progressReportOfToday.wordsIWroteToday * 1;
+      console.log(progressReportOfToday);
+      const myGoal = writingGoals[0].writingGoal * 1;
+      const returnThisNumber = (wordsIWroteToday / myGoal) * 40;
+      return {length: `${returnThisNumber}vw`};
+    }
+  }
+  const lengthOfProgressBar = decideLengthOfProgressBar();
+
   function handleClick() {
     handleChangePage("my projects");
     setSessionClose({finalWordcount: 0, closingMessage: false});
@@ -62,7 +84,7 @@ export default function ClosingPopup({
       <Dialog>
         <h3>{closingDialogePartOne}</h3>
         <p>{closingDialogePartTwo}</p>
-        <ProgressBar />
+        <ProgressBar lengthOfProgressBar={lengthOfProgressBar} />
         <Button onClick={() => handleClick()}>Nice!</Button>
       </Dialog>
     </Overlay>
@@ -77,7 +99,7 @@ const animationProgressBar = keyframes`
 
 const ProgressBar = styled.div`
   height: 35px;
-  width: 40vw;
+  width: ${props => props.lengthOfProgressBar.length};
   background-color: green;
   border-radius: 20px;
   animation-name: ${animationProgressBar};

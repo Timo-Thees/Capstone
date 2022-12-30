@@ -87,7 +87,6 @@ export default function Home() {
     }
     const doesTitleExist = myProjects.find(project => project.title === title);
     const doesIdExist = myProjects.find(project => project.id === id);
-    console.log(doesIdExist);
     if (doesTitleExist !== undefined && doesIdExist === undefined) {
       setNameTakenContent({
         title: title,
