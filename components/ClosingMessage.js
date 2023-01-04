@@ -53,15 +53,16 @@ export default function ClosingPopup({
   }
   function decideLengthOfProgressBar() {
     const progressReportOfToday = dailyProgress.find(
-      progressReport => progressReport.calendarDay === sessionClose.calendarDay
+      progressReport => progressReport.calenderDay === sessionClose.calenderDay
     );
+    console.log(dailyProgress);
     const didIPlanToWriteToday = writingGoals.find(
       writingGoals => writingGoals.weekday === dailyProgress.weekday
     );
     if (didIPlanToWriteToday === undefined) {
       return "40vw";
     } else if (progressReportOfToday === undefined) {
-      console.log("progressReportOfToday is undefined for some reason");
+      console.log("progressReportOfToday is undefined");
       return "40vw";
     } else {
       const wordsIWroteToday = progressReportOfToday.wordsIWroteToday * 1;

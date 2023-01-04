@@ -47,6 +47,16 @@ export default function SetGoals({writingGoals, setWritingGoals}) {
     event.preventDefault();
     setWritingGoals(writingGoals.filter(time => time.key !== keyForDeletion));
   }
+  function handleChangeWritingTime(keyForDeletion) {
+    const findTimeslot = writingGoals.find(
+      timeslot => timeslot.key === keyForDeletion
+    );
+    const updateTimeslot = {...findTimeslot, startingTime: "", endingTime: ""};
+    const removeOldEntry = writingGoals.filter(
+      time => time.key !== keyForDeletion
+    );
+    setWritingGoals([...removeOldEntry, updateTimeslot]);
+  }
   const handelSetGoals = event => {
     event.preventDefault();
     const newGoal = event.target.goal.value;
@@ -58,6 +68,7 @@ export default function SetGoals({writingGoals, setWritingGoals}) {
     event.target.goal.value = "";
   };
   const writingGoal = writingGoals[0].writingGoal;
+
   return (
     <>
       <AllFiles>
@@ -84,6 +95,7 @@ export default function SetGoals({writingGoals, setWritingGoals}) {
                         handleUpdateTimeslot={handleUpdateTimeslot}
                         startingTime={timeslot.startingTime}
                         endingTime={timeslot.endingTime}
+                        handleChangeWritingTime={handleChangeWritingTime}
                       />
                     );
                   }

@@ -29,7 +29,7 @@ export default function Editor({
     setSessionClose({
       wordcount: finalWordCount,
       showClosingMessage: true,
-      calendarDay: calenderDay,
+      calenderDay: calenderDay,
     });
     progressTracker(finalWordCount);
     saveProjects(title, text, id, wordcount);
