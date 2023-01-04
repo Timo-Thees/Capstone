@@ -2,6 +2,8 @@ import {Overlay, Dialog} from "../styles/PopupStyles";
 import {Button} from "./Button";
 import styled from "styled-components";
 import {keyframes} from "styled-components";
+import Celebration from "./Celebration";
+// import {useState} from "react";
 
 export default function ClosingPopup({
   sessionClose,
@@ -10,6 +12,8 @@ export default function ClosingPopup({
   writingGoals,
   dailyProgress,
 }) {
+  // const [confettiTime, setConfettiTime] = useState(false);
+  let confettiTime = false;
   function compareProgressAndGoals(writingGoals, dailyProgress, sessionClose) {
     const didIPlanToWriteToday = writingGoals.find(
       writingGoals => writingGoals.weekday === dailyProgress.weekday
@@ -40,14 +44,20 @@ export default function ClosingPopup({
       } else if (wordsIWroteToday === myGoal) {
         const closingDialogePartTwo =
           "You met your goal today! Excelent progress!";
+        // setConfettiTime(true);
+        confettiTime = true;
         return [closingDialogePartOne, closingDialogePartTwo];
       } else if (wordsIWroteToday > myGoal) {
         const closingDialogePartTwo =
           "Today you wrote even more than you planed. Wow! You are on fire!";
+        // setConfettiTime(true);
+        confettiTime = true;
         return [closingDialogePartOne, closingDialogePartTwo];
       }
     } else {
       const closingDialogePartTwo = "And you didnt even plan to write today...";
+      // setConfettiTime(true);
+      confettiTime = true;
       return [closingDialogePartOne, closingDialogePartTwo];
     }
   }
@@ -66,7 +76,6 @@ export default function ClosingPopup({
       return "40vw";
     } else {
       const wordsIWroteToday = progressReportOfToday.wordsIWroteToday * 1;
-      console.log(progressReportOfToday);
       const myGoal = writingGoals[0].writingGoal * 1;
       const returnThisNumber = (wordsIWroteToday / myGoal) * 40;
       return {length: `${returnThisNumber}vw`};
@@ -77,11 +86,13 @@ export default function ClosingPopup({
   function handleClick() {
     handleChangePage("my projects");
     setSessionClose({finalWordcount: 0, closingMessage: false});
+    // setConfettiTime(false);
   }
   const [closingDialogePartOne, closingDialogePartTwo] =
     compareProgressAndGoals(writingGoals, dailyProgress, sessionClose);
   return (
     <Overlay>
+      {confettiTime === true ? <Celebration /> : <></>}
       <Dialog>
         <h3>{closingDialogePartOne}</h3>
         <p>{closingDialogePartTwo}</p>
@@ -95,7 +106,7 @@ const animationProgressBar = keyframes`
 0% {width: 0%;}
 30% {width: 15%;}
 80% {width: 90%;}
-100% {width: 100%}
+100% {width: 100%;}
 `;
 
 const ProgressBar = styled.div`
