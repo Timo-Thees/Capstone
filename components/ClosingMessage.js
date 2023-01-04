@@ -3,7 +3,6 @@ import {Button} from "./Button";
 import styled from "styled-components";
 import {keyframes} from "styled-components";
 import Celebration from "./Celebration";
-// import {useState} from "react";
 
 export default function ClosingPopup({
   sessionClose,
@@ -12,7 +11,6 @@ export default function ClosingPopup({
   writingGoals,
   dailyProgress,
 }) {
-  // const [confettiTime, setConfettiTime] = useState(false);
   let confettiTime = false;
   function compareProgressAndGoals(writingGoals, dailyProgress, sessionClose) {
     const didIPlanToWriteToday = writingGoals.find(
@@ -23,7 +21,6 @@ export default function ClosingPopup({
       const wordsIWroteToday =
         dailyProgress[dailyProgress.length - 1].wordsIWroteToday;
       const myGoal = writingGoals[writingGoals.length - 1].writingGoal;
-      console.log(dailyProgress[dailyProgress.length - 1].wordsIWroteToday);
       if (wordsIWroteToday < myGoal / 4) {
         const closingDialogePartTwo =
           "You did not reach your goal, but you made an effort, and that counts";
@@ -44,19 +41,16 @@ export default function ClosingPopup({
       } else if (wordsIWroteToday === myGoal) {
         const closingDialogePartTwo =
           "You met your goal today! Excelent progress!";
-        // setConfettiTime(true);
         confettiTime = true;
         return [closingDialogePartOne, closingDialogePartTwo];
       } else if (wordsIWroteToday > myGoal) {
         const closingDialogePartTwo =
           "Today you wrote even more than you planed. Wow! You are on fire!";
-        // setConfettiTime(true);
         confettiTime = true;
         return [closingDialogePartOne, closingDialogePartTwo];
       }
     } else {
       const closingDialogePartTwo = "And you didnt even plan to write today...";
-      // setConfettiTime(true);
       confettiTime = true;
       return [closingDialogePartOne, closingDialogePartTwo];
     }
@@ -65,7 +59,6 @@ export default function ClosingPopup({
     const progressReportOfToday = dailyProgress.find(
       progressReport => progressReport.calenderDay === sessionClose.calenderDay
     );
-    console.log(dailyProgress);
     const didIPlanToWriteToday = writingGoals.find(
       writingGoals => writingGoals.weekday === dailyProgress.weekday
     );
@@ -86,7 +79,6 @@ export default function ClosingPopup({
   function handleClick() {
     handleChangePage("my projects");
     setSessionClose({finalWordcount: 0, closingMessage: false});
-    // setConfettiTime(false);
   }
   const [closingDialogePartOne, closingDialogePartTwo] =
     compareProgressAndGoals(writingGoals, dailyProgress, sessionClose);
