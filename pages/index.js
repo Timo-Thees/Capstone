@@ -17,6 +17,47 @@ export default function Home() {
     "WriteNow! Save files",
     []
   );
+  const [writingGoals, setWritingGoals] = useLocalStorage("writeNow! goals", [
+    {
+      writingGoal: 0,
+      weekday: "",
+      key: 0,
+    },
+  ]);
+  const [dailyProgress, setDailyProgress] = useLocalStorage(
+    "WriteNow! progressTracker",
+    []
+  );
+  function progressTracker(wordsIWroteThisSession) {
+    const today = new Date();
+    const weekday = today.getDay();
+    const dayOfTheMonth = today.getDate();
+    const month = today.getMonth();
+    const calenderDay = `${dayOfTheMonth}` + "." + (month + 1);
+    const dailyProgressReport = {
+      weekday: weekday,
+      calenderDay: calenderDay,
+      wordsIWroteToday: 0,
+    };
+    const didIwriteToday = dailyProgress.find(
+      progressReports => progressReports.weekday === weekday
+    );
+    if (didIwriteToday !== undefined) {
+      const newNumber =
+        didIwriteToday.wordsIWroteToday + wordsIWroteThisSession;
+      const updatedReport = {...didIwriteToday, wordsIWroteToday: newNumber};
+      const newArray = dailyProgress.filter(
+        dailyReports => dailyReports.calenderDay !== calenderDay
+      );
+      setDailyProgress([...newArray, updatedReport]);
+    } else {
+      const newReport = {
+        ...dailyProgressReport,
+        wordsIWroteToday: wordsIWroteThisSession,
+      };
+      setDailyProgress([...dailyProgress, newReport]);
+    }
+  }
   const [editorContent, setEditorContent] = useState({
     title: "",
     text: "",
@@ -78,7 +119,14 @@ export default function Home() {
       ) : (
         <></>
       )}
-      {page === "goals" ? <SetGoals /> : <></>}
+      {page === "goals" ? (
+        <SetGoals
+          writingGoals={writingGoals}
+          setWritingGoals={setWritingGoals}
+        />
+      ) : (
+        <></>
+      )}
       {page === "progress" ? <Progress /> : <></>}
       {page === "my projects" ? (
         <Projects
@@ -96,6 +144,9 @@ export default function Home() {
           handleChangePage={handleChangePage}
           editorContent={editorContent}
           nameTakenContent={nameTakenContent}
+          progressTracker={progressTracker}
+          writingGoals={writingGoals}
+          dailyProgress={dailyProgress}
         />
       ) : (
         <></>

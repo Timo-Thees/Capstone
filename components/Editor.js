@@ -9,6 +9,9 @@ export default function Editor({
   handleChangePage,
   editorContent,
   nameTakenContent,
+  progressTracker,
+  writingGoals,
+  dailyProgress,
 }) {
   const [sessionClose, setSessionClose] = useState({
     wordcount: 0,
@@ -22,6 +25,7 @@ export default function Editor({
     const id = editorContent.id;
     const finalWordCount = wordcount - editorContent.wordcount;
     setSessionClose({wordcount: finalWordCount, showClosingMessage: true});
+    progressTracker(finalWordCount);
     saveProjects(title, text, id, wordcount);
   };
   return (
@@ -31,6 +35,8 @@ export default function Editor({
           sessionClose={sessionClose}
           setSessionClose={setSessionClose}
           handleChangePage={handleChangePage}
+          writingGoals={writingGoals}
+          dailyProgress={dailyProgress}
         />
       )}
       <Form onSubmit={handleSave}>
