@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import {AllFiles, FileBox} from "./Boxes";
 
 export default function Progress({dailyProgress}) {
@@ -8,13 +9,22 @@ export default function Progress({dailyProgress}) {
       {dailyProgress.map(day => {
         return (
           <FileBox key={day.calenderDay}>
-            <p>
-              Date: {day.calenderDay}. Words written: {day.wordsIWroteToday}.
-              Goal reached: {day.goalReached}
-            </p>
+            <div>
+              <Subheadline>Date: </Subheadline>
+              <p>{day.calenderDay}</p>
+              <Subheadline>Words written: </Subheadline>
+              <p>{day.wordsIWroteToday}</p>
+              <Subheadline>Goal reached: </Subheadline>
+              <p>{day.goalReached}</p>
+            </div>
           </FileBox>
         );
       })}
     </AllFiles>
   );
 }
+
+const Subheadline = styled.p`
+  font-size: 14pt;
+  font-weight: 200;
+`;

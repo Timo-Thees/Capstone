@@ -1,6 +1,6 @@
 import Timeslot from "./Timeslot";
-import {SmallButton, Button} from "./Button";
-import {AllFiles, FileBox} from "./Boxes";
+import {SmallButton, ActiveButton} from "./Button";
+import {AllFiles, FileBox, SpecialBox} from "./Boxes";
 import styled from "styled-components";
 
 const weekday = [
@@ -73,15 +73,16 @@ export default function SetGoals({writingGoals, setWritingGoals}) {
   return (
     <>
       <AllFiles>
-        <FileBox>
+        <SpecialBox>
           <SetGoalsHeadline>
             How many words do you want to write each day?
           </SetGoalsHeadline>
           <form onSubmit={handelSetGoals}>
             <input type="number" id="goal" placeholder={writingGoal}></input>
-            <Button type="submit">Set Goal</Button>
+            <br />
+            <ActiveButton type="submit">Set Goal</ActiveButton>
           </form>
-        </FileBox>
+        </SpecialBox>
         <AllFiles>
           {weekday.map(day => {
             return (

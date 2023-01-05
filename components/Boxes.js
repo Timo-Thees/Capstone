@@ -21,6 +21,10 @@ export const FileBox = styled.div`
   min-width: 55vw;
 `;
 
+export const SpecialBox = styled(FileBox)`
+  background-color: #5c9ead;
+`;
+
 export const TextPreview = styled.article`
   max-height: 20vh;
   overflow: hidden;

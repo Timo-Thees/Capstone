@@ -17,6 +17,12 @@ export const ActiveButton = styled(Button)`
   width: 100px;
   height: 40px;
 `;
+
+export const SpecialButton = styled(Button)`
+  background: #b2d7df;
+  color: black;
+`;
+
 export const DangerButton = styled(Button)`
   background: #ec7a4a;
 `;
@@ -42,4 +48,5 @@ export const ButtonBox = styled.div`
   justify-content: space-around;
   flex-wrap: wrap;
   row-gap: 2vh;
+  gap: 1vw;
 `;
