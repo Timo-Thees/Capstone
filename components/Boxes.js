@@ -10,11 +10,15 @@ export const AllFiles = styled.div`
 `;
 
 export const FileBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1vh 1vw;
   background-color: #b2d7df;
   border-radius: 16px;
   align-items: center;
   text-align: center;
-  padding: 2vh 2vw;
+  padding: 3vh 2vw;
+  min-width: 55vw;
 `;
 
 export const TextPreview = styled.article`

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Button = styled.button`
+  margin: 1vh 1vw;
   min-width: 80px;
   min-height: 35px;
   background: #5c9ead;
@@ -40,5 +41,5 @@ export const ButtonBox = styled.div`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  row-gap: 2vh; ;
+  row-gap: 2vh;
 `;
