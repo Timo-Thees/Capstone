@@ -1,5 +1,5 @@
 import Timeslot from "./Timeslot";
-import {Button} from "./Button";
+import {SmallButton, Button} from "./Button";
 import {AllFiles, FileBox} from "./Boxes";
 
 const weekday = [
@@ -100,9 +100,9 @@ export default function SetGoals({writingGoals, setWritingGoals}) {
                     );
                   }
                 })}
-                <Button onClick={() => handleNewTimeslot(day.numberOfDay)}>
+                <SmallButton onClick={() => handleNewTimeslot(day.numberOfDay)}>
                   +
-                </Button>
+                </SmallButton>
               </FileBox>
             );
           })}
