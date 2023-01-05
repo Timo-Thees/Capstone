@@ -13,16 +13,21 @@ export default function ClosingPopup({
   let confettiTime = false;
   function compareProgressAndGoals(writingGoals, dailyProgress, sessionClose) {
     const didIPlanToWriteToday = writingGoals.find(
-      writingGoals => writingGoals.weekday === dailyProgress.weekday
+      writingGoals => writingGoals.weekday === sessionClose.weekday
     );
     const closingDialogePartOne = `Congratulations! This session you wrote ${sessionClose.wordcount} words!`;
     if (didIPlanToWriteToday !== undefined) {
       const wordsIWroteToday =
         dailyProgress[dailyProgress.length - 1].wordsIWroteToday;
       const myGoal = writingGoals[writingGoals.length - 1].writingGoal;
+      if (wordsIWroteToday === 0) {
+        const closingDialogePartTwo =
+          "'Sometimes writing is staring at a blank page for 8 hours and closing the programm again' - Taika Waititi ";
+        return [closingDialogePartOne, closingDialogePartTwo];
+      }
       if (wordsIWroteToday < myGoal / 4) {
         const closingDialogePartTwo =
-          "You did not reach your goal, but you made an effort, and that counts";
+          "You did not reach your goal, but you did show up. Thats worth something.";
         return [closingDialogePartOne, closingDialogePartTwo];
       } else if (
         wordsIWroteToday >= myGoal / 4 &&
@@ -58,9 +63,11 @@ export default function ClosingPopup({
     const progressReportOfToday = dailyProgress.find(
       progressReport => progressReport.calenderDay === sessionClose.calenderDay
     );
+    console.log(progressReportOfToday);
     const didIPlanToWriteToday = writingGoals.find(
-      writingGoals => writingGoals.weekday === dailyProgress.weekday
+      writingGoals => writingGoals.weekday === sessionClose.weekday
     );
+    console.log(didIPlanToWriteToday);
     if (didIPlanToWriteToday === undefined) {
       return "40vw";
     } else if (progressReportOfToday === undefined) {
