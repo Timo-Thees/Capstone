@@ -15,7 +15,7 @@ export default function Timeslot({
         <>
           <p>
             In this timeslot you want to write from {startingTime} to{" "}
-            {endingTime}
+            {endingTime}.
           </p>
           <Button onClick={() => handleChangeWritingTime(keyForDeletion)}>
             Change Time

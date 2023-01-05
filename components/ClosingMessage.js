@@ -1,7 +1,6 @@
 import {Overlay, Dialog} from "../styles/PopupStyles";
 import {Button} from "./Button";
-import styled from "styled-components";
-import {keyframes} from "styled-components";
+import styled, {keyframes} from "styled-components";
 import Celebration from "./Celebration";
 
 export default function ClosingPopup({
@@ -65,13 +64,13 @@ export default function ClosingPopup({
     if (didIPlanToWriteToday === undefined) {
       return "40vw";
     } else if (progressReportOfToday === undefined) {
-      console.log("progressReportOfToday is undefined");
+      console.error("progressReportOfToday is undefined");
       return "40vw";
     } else {
       const wordsIWroteToday = progressReportOfToday.wordsIWroteToday * 1;
       const myGoal = writingGoals[0].writingGoal * 1;
-      const returnThisNumber = (wordsIWroteToday / myGoal) * 40;
-      return {length: `${returnThisNumber}vw`};
+      const progress = (wordsIWroteToday / myGoal) * 40;
+      return {length: `${progress}vw`};
     }
   }
   const lengthOfProgressBar = decideLengthOfProgressBar();
