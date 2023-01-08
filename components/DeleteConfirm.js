@@ -1,5 +1,5 @@
 import {Overlay, Dialog} from "../styles/PopupStyles";
-import {Button, DangerButton, ButtonBox} from "./Button";
+import {Button, DangerButton, ButtonBox} from "../styles/Button";
 
 export default function DeleteConfirm({
   setDeletePopup,

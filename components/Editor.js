@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import {TitleField, TextField} from "./Textfields";
-import {Button} from "./Button";
+import {TitleField, TextField} from "../styles/Textfields";
+import {Button} from "../styles/Button";
 import {useState} from "react";
 import ClosingPopup from "./ClosingMessage";
 
@@ -23,6 +23,7 @@ export default function Editor({
     const id = editorContent.id;
     const finalWordCount = wordcount - editorContent.wordcount;
     const today = new Date();
+    const weekday = today.getDay();
     const dayOfTheMonth = today.getDate();
     const month = today.getMonth();
     const calenderDay = `${dayOfTheMonth}` + "." + (month + 1);
@@ -30,6 +31,7 @@ export default function Editor({
       wordcount: finalWordCount,
       showClosingMessage: true,
       calenderDay: calenderDay,
+      weekday: weekday,
     });
     progressTracker(finalWordCount);
     saveProjects(title, text, id, wordcount);

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {AllFiles, FileBox} from "./Boxes";
+import {AllFiles, FileBox} from "../styles/Boxes";
 
 export default function Progress({dailyProgress}) {
   const newestFirst = [...dailyProgress];

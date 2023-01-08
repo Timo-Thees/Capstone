@@ -1,7 +1,7 @@
 import {Overlay, Dialog} from "../styles/PopupStyles";
-import {Button} from "./Button";
+import {Button} from "../styles/Button";
 import styled, {keyframes} from "styled-components";
-import Celebration from "./Celebration";
+import Celebration from "../styles/Celebration";
 
 export default function ClosingPopup({
   sessionClose,
@@ -13,7 +13,7 @@ export default function ClosingPopup({
   let confettiTime = false;
   function compareProgressAndGoals(writingGoals, dailyProgress, sessionClose) {
     const didIPlanToWriteToday = writingGoals.find(
-      writingGoals => writingGoals.weekday === dailyProgress.weekday
+      writingGoals => writingGoals.weekday === sessionClose.weekday
     );
     const closingDialogePartOne = `Congratulations! This session you wrote ${sessionClose.wordcount} words!`;
     if (didIPlanToWriteToday !== undefined) {
@@ -59,7 +59,7 @@ export default function ClosingPopup({
       progressReport => progressReport.calenderDay === sessionClose.calenderDay
     );
     const didIPlanToWriteToday = writingGoals.find(
-      writingGoals => writingGoals.weekday === dailyProgress.weekday
+      writingGoals => writingGoals.weekday === sessionClose.weekday
     );
     if (didIPlanToWriteToday === undefined) {
       return "40vw";

@@ -1,6 +1,6 @@
-import {TitleField} from "./Textfields";
+import {TitleField} from "../styles/Textfields";
 import {Overlay, Dialog} from "../styles/PopupStyles";
-import {LargeButton, LargeDangerButton, ButtonBox} from "./Button";
+import {LargeButton, LargeDangerButton, ButtonBox} from "../styles/Button";
 
 export default function NameTaken({
   nameTakenContent,

@@ -1,6 +1,6 @@
 import Timeslot from "./Timeslot";
-import {SmallButton, ActiveButton} from "./Button";
-import {AllFiles, FileBox, SpecialBox} from "./Boxes";
+import {SmallButton, ActiveButton} from "../styles/Button";
+import {AllFiles, FileBox, SpecialBox} from "../styles/Boxes";
 import styled from "styled-components";
 
 const weekday = [

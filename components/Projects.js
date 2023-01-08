@@ -1,7 +1,13 @@
-import {AllFiles, FileBox, TextPreview, Fade, SpecialBox} from "./Boxes";
+import {
+  AllFiles,
+  FileBox,
+  TextPreview,
+  Fade,
+  SpecialBox,
+} from "../styles/Boxes";
 import {useState} from "react";
 import DeleteConfirm from "./DeleteConfirm";
-import {Button, DangerButton, ButtonBox, ActiveButton} from "./Button";
+import {Button, DangerButton, ButtonBox, ActiveButton} from "../styles/Button";
 
 export default function Projects({
   myProjects,

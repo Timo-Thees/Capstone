@@ -1,4 +1,4 @@
-import {Button, ButtonBox} from "./Button";
+import {Button, ButtonBox} from "../styles/Button";
 import styled from "styled-components";
 
 export default function Timeslot({
