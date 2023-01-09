@@ -18,7 +18,9 @@
     "mongoose": "^6.7.3",
     "next": "13.0.4",
     "react": "18.2.0",
+    "react-confetti": "^6.1.0",
     "react-dom": "18.2.0",
+    "react-use-window-size": "^1.0.1",
     "styled-components": "^5.3.6"
   },
   "devDependencies": {

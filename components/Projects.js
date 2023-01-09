@@ -1,6 +1,7 @@
-import styled from "styled-components";
+import {AllFiles, FileBox, TextPreview, Fade} from "./Boxes";
 import {useState} from "react";
 import DeleteConfirm from "./DeleteConfirm";
+import {Button, DangerButton, ButtonBox} from "./Button";
 
 export default function Projects({
   myProjects,
@@ -15,7 +16,9 @@ export default function Projects({
     handleChangePage("editor");
   }
   function handleNewFile() {
-    const lastEntry = myProjects[myProjects.length - 1];
+    const coppyArray = [...myProjects];
+    const sortetById = coppyArray.sort((a, b) => a.id - b.id);
+    const lastEntry = sortetById[sortetById.length - 1];
     function testEntry(entryToTest) {
       if (entryToTest === undefined) {
         return 0;
@@ -43,43 +46,35 @@ export default function Projects({
       )}
       <FileBox>
         <h3>Start something new!</h3>
-        <button onClick={() => handleNewFile()}>new document</button>
+        <Button onClick={() => handleNewFile()}>new document</Button>
       </FileBox>
       {myProjects.map(project => {
         return (
           <FileBox key={project.id}>
             <h3>{project.title}</h3>
-            <article>{project.text}</article>
-            <button
-              onClick={() =>
-                handleLoadFile(
-                  project.title,
-                  project.text,
-                  project.id,
-                  project.wordcount
-                )
-              }
-            >
-              continue
-            </button>
-            <button onClick={() => handleDeletion(project.id)}>delete</button>
+            <Fade>
+              <TextPreview>{project.text}</TextPreview>
+            </Fade>
+            <ButtonBox>
+              <Button
+                onClick={() =>
+                  handleLoadFile(
+                    project.title,
+                    project.text,
+                    project.id,
+                    project.wordcount
+                  )
+                }
+              >
+                continue
+              </Button>
+              <DangerButton onClick={() => handleDeletion(project.id)}>
+                delete
+              </DangerButton>
+            </ButtonBox>
           </FileBox>
         );
       })}
     </AllFiles>
   );
 }
-
-const AllFiles = styled.div`
-  margin-left: 10vw;
-  margin-right: 10vw;
-  display: grid;
-  background-color: salmon;
-  padding: 2vh 2vw;
-  gap: 2vh;
-`;
-
-const FileBox = styled.div`
-  background-color: lightblue;
-  padding: 2vh 2vw;
-`;

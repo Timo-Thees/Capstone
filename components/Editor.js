@@ -12,11 +12,9 @@ export default function Editor({
   progressTracker,
   writingGoals,
   dailyProgress,
+  sessionClose,
+  setSessionClose,
 }) {
-  const [sessionClose, setSessionClose] = useState({
-    wordcount: 0,
-    showClosingMessage: false,
-  });
   const [wordcount, setWordcount] = useState(editorContent.wordcount);
   const handleSave = event => {
     event.preventDefault();
@@ -24,7 +22,17 @@ export default function Editor({
     const text = event.target.text.value;
     const id = editorContent.id;
     const finalWordCount = wordcount - editorContent.wordcount;
-    setSessionClose({wordcount: finalWordCount, showClosingMessage: true});
+    const today = new Date();
+    const weekday = today.getDay();
+    const dayOfTheMonth = today.getDate();
+    const month = today.getMonth();
+    const calenderDay = `${dayOfTheMonth}` + "." + (month + 1);
+    setSessionClose({
+      wordcount: finalWordCount,
+      showClosingMessage: true,
+      calenderDay: calenderDay,
+      weekday: weekday,
+    });
     progressTracker(finalWordCount);
     saveProjects(title, text, id, wordcount);
   };

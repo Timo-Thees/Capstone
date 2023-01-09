@@ -28,12 +28,17 @@ export default function Home() {
     "WriteNow! progressTracker",
     []
   );
+  const [sessionClose, setSessionClose] = useState({
+    wordcount: 0,
+    showClosingMessage: false,
+  });
   function progressTracker(wordsIWroteThisSession) {
     const today = new Date();
     const weekday = today.getDay();
     const dayOfTheMonth = today.getDate();
     const month = today.getMonth();
     const calenderDay = `${dayOfTheMonth}` + "." + (month + 1);
+    const myGoal = writingGoals[0].writingGoal;
     const dailyProgressReport = {
       weekday: weekday,
       calenderDay: calenderDay,
@@ -45,7 +50,12 @@ export default function Home() {
     if (didIwriteToday !== undefined) {
       const newNumber =
         didIwriteToday.wordsIWroteToday + wordsIWroteThisSession;
-      const updatedReport = {...didIwriteToday, wordsIWroteToday: newNumber};
+      const goalReached = `Today I wrote ${newNumber} words from my set goal of ${myGoal}`;
+      const updatedReport = {
+        ...didIwriteToday,
+        wordsIWroteToday: newNumber,
+        goalReached: goalReached,
+      };
       const newArray = dailyProgress.filter(
         dailyReports => dailyReports.calenderDay !== calenderDay
       );
@@ -115,6 +125,7 @@ export default function Home() {
           setNameTakenContent={setNameTakenContent}
           setEditorContent={setEditorContent}
           myProjects={myProjects}
+          setSessionClose={setSessionClose}
         />
       ) : (
         <></>
@@ -127,7 +138,7 @@ export default function Home() {
       ) : (
         <></>
       )}
-      {page === "progress" ? <Progress /> : <></>}
+      {page === "progress" ? <Progress dailyProgress={dailyProgress} /> : <></>}
       {page === "my projects" ? (
         <Projects
           myProjects={myProjects}
@@ -147,6 +158,8 @@ export default function Home() {
           progressTracker={progressTracker}
           writingGoals={writingGoals}
           dailyProgress={dailyProgress}
+          sessionClose={sessionClose}
+          setSessionClose={setSessionClose}
         />
       ) : (
         <></>
@@ -157,6 +170,7 @@ export default function Home() {
 
 const Body = styled.div`
   background: #eeeeee;
-  width: 100vw;
-  height: 150vh;
+  background-attachment: fixed;
+  width: 100%;
+  height: 100%;
 `;
