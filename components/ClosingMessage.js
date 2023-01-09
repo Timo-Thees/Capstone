@@ -97,8 +97,9 @@ export default function ClosingPopup({
 }
 const animationProgressBar = keyframes`
 0% {width: 0%;}
-30% {width: 15%;}
-80% {width: 90%;}
+25% {width: 25%;}
+50% {width: 50%}
+75% {width: 75%;}
 100% {width: 100%;}
 `;
 
