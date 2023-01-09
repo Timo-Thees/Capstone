@@ -1,6 +1,6 @@
-import {TitleField} from "./Textfields";
+import {TitleField} from "../styles/Textfields";
 import {Overlay, Dialog} from "../styles/PopupStyles";
-import {Button, DangerButton, ButtonBox} from "./Button";
+import {LargeButton, LargeDangerButton, ButtonBox} from "../styles/Button";
 
 export default function NameTaken({
   nameTakenContent,
@@ -65,16 +65,22 @@ export default function NameTaken({
             defaultValue={nameTakenContent.title}
           ></TitleField>
           <ButtonBox>
-            <Button type="submit">Save</Button>
-            <DangerButton onClick={() => handleOverwrite(nameTakenContent)}>
-              Overwrite save
-            </DangerButton>
-            <DangerButton onClick={() => handleCloseWithoutSaving()}>
-              Close without saving
-            </DangerButton>
-            <Button onClick={() => handleReturnToEditor()}>
-              Return to editor
-            </Button>
+            <LargeButton type="submit">Save</LargeButton>
+            <LargeDangerButton
+              onClick={() => handleOverwrite(nameTakenContent)}
+            >
+              Overwrite
+              <br />
+              existing save
+            </LargeDangerButton>
+            <LargeDangerButton onClick={() => handleCloseWithoutSaving()}>
+              Close without <br />
+              saving
+            </LargeDangerButton>
+            <LargeButton onClick={() => handleReturnToEditor()}>
+              Return to <br />
+              editor
+            </LargeButton>
           </ButtonBox>
         </form>
       </Dialog>

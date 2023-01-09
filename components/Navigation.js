@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import {Button} from "./Button";
-import {ActiveButton} from "./Button";
+import {Button, ActiveButton} from "../styles/Button";
 
 export default function Navigation({handleChangePage, page}) {
   return (

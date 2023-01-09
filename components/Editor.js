@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import {TitleField, TextField} from "./Textfields";
-import {Button} from "./Button";
+import {TitleField, TextField} from "../styles/Textfields";
+import {Button} from "../styles/Button";
 import {useState} from "react";
 import ClosingPopup from "./ClosingMessage";
 

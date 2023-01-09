@@ -1,7 +1,13 @@
-import {AllFiles, FileBox, TextPreview, Fade} from "./Boxes";
+import {
+  AllFiles,
+  FileBox,
+  TextPreview,
+  Fade,
+  SpecialBox,
+} from "../styles/Boxes";
 import {useState} from "react";
 import DeleteConfirm from "./DeleteConfirm";
-import {Button, DangerButton, ButtonBox} from "./Button";
+import {Button, DangerButton, ButtonBox, ActiveButton} from "../styles/Button";
 
 export default function Projects({
   myProjects,
@@ -44,10 +50,12 @@ export default function Projects({
           setMyProjects={setMyProjects}
         />
       )}
-      <FileBox>
+      <SpecialBox>
         <h3>Start something new!</h3>
-        <Button onClick={() => handleNewFile()}>new document</Button>
-      </FileBox>
+        <ActiveButton onClick={() => handleNewFile()}>
+          new document
+        </ActiveButton>
+      </SpecialBox>
       {myProjects.map(project => {
         return (
           <FileBox key={project.id}>

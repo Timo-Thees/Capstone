@@ -1,6 +1,7 @@
 import Timeslot from "./Timeslot";
-import {Button} from "./Button";
-import {AllFiles, FileBox} from "./Boxes";
+import {SmallButton, ActiveButton} from "../styles/Button";
+import {AllFiles, FileBox, SpecialBox} from "../styles/Boxes";
+import styled from "styled-components";
 
 const weekday = [
   {weekday: "Monday", numberOfDay: 1},
@@ -72,18 +73,21 @@ export default function SetGoals({writingGoals, setWritingGoals}) {
   return (
     <>
       <AllFiles>
-        <FileBox>
-          <label>How many words do you want to write each day?</label>
+        <SpecialBox>
+          <SetGoalsHeadline>
+            How many words do you want to write each day?
+          </SetGoalsHeadline>
           <form onSubmit={handelSetGoals}>
             <input type="number" id="goal" placeholder={writingGoal}></input>
-            <Button type="submit">Set Goal</Button>
+            <br />
+            <ActiveButton type="submit">Set Goal</ActiveButton>
           </form>
-        </FileBox>
+        </SpecialBox>
         <AllFiles>
           {weekday.map(day => {
             return (
               <FileBox key={day.numberOfDay}>
-                {day.weekday}
+                <Weekday>{day.weekday}</Weekday>
                 {writingGoals.map(timeslot => {
                   if (timeslot.weekday === day.numberOfDay) {
                     return (
@@ -100,9 +104,9 @@ export default function SetGoals({writingGoals, setWritingGoals}) {
                     );
                   }
                 })}
-                <Button onClick={() => handleNewTimeslot(day.numberOfDay)}>
+                <SmallButton onClick={() => handleNewTimeslot(day.numberOfDay)}>
                   +
-                </Button>
+                </SmallButton>
               </FileBox>
             );
           })}
@@ -111,3 +115,14 @@ export default function SetGoals({writingGoals, setWritingGoals}) {
     </>
   );
 }
+
+const Weekday = styled.p`
+  font-weight: 300;
+  margin-top: -1vh;
+  margin-bottom: 1vh;
+`;
+
+const SetGoalsHeadline = styled.label`
+  font-size: 14pt;
+  font-weight: 500;
+`;
